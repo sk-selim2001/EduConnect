@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect | Education Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2C3E50;
+            --primary-light: #3D566E;
+            --secondary: #18BC9C;
+            --secondary-light: #2DD4B1;
+            --accent: #F39C12;
+            --accent-light: #FFB347;
+            --neutral-light: #F8F9FA;
+            --neutral-mid: #ECF0F1;
+            --neutral-dark: #7F8C8D;
+            --white: #FFFFFF;
+            --black: #212529;
+            --radius: 12px;
+            --radius-lg: 24px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--primary);
+            background-color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        h4 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--neutral-dark);
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2rem;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(24, 188, 156, 0.3);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-light);
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .text-center .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Header & Navigation (from reference) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            color: var(--primary);
+            margin: 0 5px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Page Navigation */
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .page-nav button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: var(--neutral-mid);
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .page-nav button:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .page-nav button.active {
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(24, 188, 156, 0.3);
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            padding-top: 6rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Announcements Page */
+        .announcements-hero {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 7rem 0 5rem;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcements-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            pointer-events: none;
+        }
+
+        .announcements-hero .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .month-picker {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--white);
+            outline: none;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .month-picker:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .month-picker option {
+            color: var(--primary);
+        }
+
+        .announcements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .announcements-list {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 1.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--secondary) var(--neutral-mid);
+        }
+
+        .announcements-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .announcements-list::-webkit-scrollbar-track {
+            background: var(--neutral-mid);
+            border-radius: 10px;
+        }
+
+        .announcements-list::-webkit-scrollbar-thumb {
+            background-color: var(--secondary);
+            border-radius: 10px;
+        }
+
+        .announcement-item {
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.5s ease forwards;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .announcement-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .announcement-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .announcement-date {
+            color: var(--neutral-dark);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+
+        .featured-announcement {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .featured-announcement:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .featured-image {
+            height: 250px;
+            background: var(--gradient-secondary);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
+        .featured-image i {
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .featured-content {
+            padding: 2rem;
+        }
+
+        .featured-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 2.5rem 0;
+        }
+
+        .tag {
+            padding: 0.5rem 1.25rem;
+            background: var(--neutral-mid);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tag:hover,
+        .tag.active {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .archive-carousel {
+            background: var(--neutral-mid);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2.5rem 0;
+        }
+
+        .carousel-inner {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.25rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .carousel-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+        .archive-item {
+            flex: 0 0 auto;
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .archive-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .archive-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .archive-item p {
+            font-size: 0.875rem;
+            color: inherit;
+            margin-bottom: 0;
+        }
+
+        .email-cta {
+            background: var(--gradient-accent);
+            border-radius: var(--radius);
+            padding: 3.5rem 2rem;
+            text-align: center;
+            color: var(--white);
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            pointer-events: none;
+        }
+
+        .email-cta h2 {
+            position: relative;
+            z-index: 1;
+        }
+
+        .email-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .email-input {
+            display: flex;
+            max-width: 600px;
+            margin: 2rem auto 0;
+            position: relative;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-input input {
+            flex: 1;
+            padding: 1rem 1rem 1rem 3.5rem;
+            border: none;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .email-input button {
+            padding: 0 2rem;
+            border: none;
+            background: var(--primary);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 0;
+        }
+
+        .email-input button:hover {
+            background: var(--primary-light);
+        }
+
+        .envelope-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            color: var(--neutral-dark);
+            transition: var(--transition);
+        }
+
+        .email-input input:focus+.envelope-icon {
+            transform: translateY(-50%) rotate(-20deg);
+            color: var(--secondary);
+        }
+
+        /* About Us Page */
+        .about-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.95)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070') center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 10rem 0;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23F8F9FA" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
+        .tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin: 1.5rem 0;
+            min-height: 60px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 1.5rem 2.5rem;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: var(--white);
+            top: 40px;
+            transform: rotate(45deg);
+            z-index: -1;
+            box-shadow: 5px -5px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            right: auto;
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 30px;
+            z-index: 1;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -80px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -80px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            border-top: 4px solid var(--secondary);
+        }
+
+        .value-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .team-carousel {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .team-members {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            scrollbar-width: none;
+        }
+
+        .team-members::-webkit-scrollbar {
+            display: none;
+        }
+
+        .team-member {
+            flex: 0 0 280px;
+            text-align: center;
+            position: relative;
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            margin: 0 auto 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .member-image:hover {
+            transform: scale(1.05);
+        }
+
+        .member-image i {
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .member-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(44, 62, 80, 0.9);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 0 0 100px 100px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .media-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .media-logo {
+            width: 160px;
+            height: 80px;
+            background: var(--white);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .media-logo:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Contact Us Page */
+        .contact-hero {
+            height: 500px;
+            position: relative;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .map-overlay h1 {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-overlay::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23F8F9FA" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 280px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--neutral-mid);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background: var(--secondary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: var(--neutral-dark);
+            transition: var(--transition);
+            pointer-events: none;
+            background: var(--white);
+            padding: 0 0.5rem;
+            border-radius: 4px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--neutral-mid);
+            border-radius: var(--radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(24, 188, 156, 0.2);
+        }
+
+        .form-group input:focus+label,
+        .form-group textarea:focus+label,
+        .form-group input:not(:placeholder-shown)+label,
+        .form-group textarea:not(:placeholder-shown)+label {
+            top: -0.75rem;
+            left: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--secondary);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
+        }
+
+        .office-tabs {
+            margin: 3rem 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.875rem 1.5rem;
+            background: var(--neutral-mid);
+            border: none;
+            border-radius: var(--radius) var(--radius) 0 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .tab-content {
+            background: var(--white);
+            border-radius: 0 var(--radius) var(--radius) var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .social-newsletter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            background: var(--neutral-mid);
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--primary);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .social-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+            color: var(--secondary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .newsletter-input {
+            padding: 0.875rem 1.25rem;
+            border: 2px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+            min-width: 300px;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--secondary);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(24, 188, 156, 0.3);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(24, 188, 156, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(24, 188, 156, 0);
+            }
+        }
+
+        /* Footer (from reference) */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-column p {
+            color: var(--neutral-light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--neutral-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .footer-links a:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-links a:hover:before {
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: var(--neutral-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        .powered-by {
+            color: var(--neutral-light);
+        }
+
+        .powered-by a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .timeline::after {
+                left: 40px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 90px;
+                padding-right: 30px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-year,
+            .timeline-item:nth-child(even) .timeline-year {
+                left: 15px;
+                right: auto;
+                top: 20px;
+            }
+
+            .timeline-content::after {
+                left: -10px !important;
+                right: auto !important;
+                top: 30px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .announcements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .announcements-list {
+                max-height: none;
+                padding-right: 0;
+            }
+
+            .featured-announcement {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 0;
+            }
+
+            .email-input {
+                flex-direction: column;
+            }
+
+            .email-input input {
+                border-radius: var(--radius);
+                margin-bottom: 0.75rem;
+                padding-left: 1rem;
+            }
+
+            .email-input button {
+                border-radius: var(--radius);
+                padding: 1rem;
+                width: 100%;
+            }
+
+            .social-newsletter {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .newsletter-form {
+                width: 100%;
+            }
+
+            .newsletter-input {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .tab-buttons {
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                scrollbar-width: none;
+            }
+
+            .tab-buttons::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-btn {
+                white-space: nowrap;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .contact-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .timeline-item {
+                padding-left: 70px;
+                padding-right: 15px;
+            }
+
+            .timeline-year {
+                left: 10px !important;
+                top: 15px !important;
+                padding: 0.25rem 1rem;
+            }
+
+            .team-member {
+                flex: 0 0 240px;
+            }
+
+            .member-image {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation (from reference) -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Edu<span>Connect</span></a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="class.html">Classes</a></li>
+                    <li><a href="counselling.html">Guidance & Counselling</a></li>
+                    <li><a href="announcements.html">Announcements</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Navigation -->
+    <div class="container">
+        <div class="page-nav">
+            <button class="active" data-page="announcements">Announcements</button>
+            <button data-page="about">About Us</button>
+            <button data-page="contact">Contact Us</button>
+        </div>
+    </div>
+
+    <!-- Announcements Page -->
+    <section id="announcements" class="page active">
+        <div class="announcements-hero">
+            <div class="container">
+                <h1>Latest News & Updates</h1>
+                <select class="month-picker">
+                    <option>January 2024</option>
+                    <option>February 2024</option>
+                    <option selected>March 2024</option>
+                    <option>April 2024</option>
+                    <option>May 2024</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="announcements-grid">
+                <div class="announcements-list">
+                    <div class="announcement-item" style="animation-delay: 0.1s">
+                        <h3>Spring Semester Registration Opens</h3>
+                        <span class="announcement-date">March 15, 2024</span>
+                        <p>Registration for the Spring 2024 semester is now open. Secure your spot in our most popular
+                            courses before they fill up. Early registrants receive a 10% discount on tuition fees.</p>
+                        <a href="#" class="btn btn-outline">Register Now</a>
+                    </div>
+                    <div class="announcement-item" style="animation-delay: 0.2s">
+                        <h3>New STEM Workshop Series</h3>
+                        <span class="announcement-date">March 10, 2024</span>
+                        <p>We're launching a new STEM workshop series for high school students, starting April 5th.
+                            Hands-on learning in robotics, AI, and advanced programming. Limited seats available.</p>
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                    <div class="announcement-item" style="animation-delay: 0.3s">
+                        <h3>Summer Camp Early Bird Discount</h3>
+                        <span class="announcement-date">March 5, 2024</span>
+                        <p>Register before April 1st to receive 15% off our summer enrichment programs. Programs include
+                            coding, creative writing, and leadership development.</p>
+                        <a href="#" class="btn btn-outline">View Programs</a>
+                    </div>
+                    <div class="announcement-item" style="animation-delay: 0.4s">
+                        <h3>Parent-Teacher Conference Schedule</h3>
+                        <span class="announcement-date">March 1, 2024</span>
+                        <p>Spring parent-teacher conferences will be held March 20-22. Sign-up sheets are now available
+                            in the parent portal. Please schedule your appointment at your earliest convenience.</p>
+                        <a href="#" class="btn btn-outline">Access Portal</a>
+                    </div>
+                    <div class="announcement-item" style="animation-delay: 0.5s">
+                        <h3>Scholarship Application Deadline</h3>
+                        <span class="announcement-date">February 25, 2024</span>
+                        <p>Reminder: Applications for the Excellence in Education scholarship are due by March 15th.
+                            Five $5,000 awards available for outstanding students.</p>
+                        <a href="#" class="btn btn-outline">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="featured-announcement">
+                    <div class="featured-image">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="featured-content">
+                        <h3>New Campus Expansion Complete</h3>
+                        <span class="announcement-date">March 18, 2024</span>
+                        <p>We're thrilled to announce the completion of our new campus expansion project! The 10,000 sq
+                            ft addition includes state-of-the-art science laboratories, a modern media center, and
+                            collaborative learning spaces designed to foster innovation and creativity.</p>
+                        <p>The grand opening ceremony will take place on April 10th at 10:00 AM. All students, parents,
+                            and community members are invited to join us for a tour of the new facilities and
+                            refreshments.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tags">
+                <div class="tag active">All</div>
+                <div class="tag">Exams</div>
+                <div class="tag">Holiday</div>
+                <div class="tag">Achievements</div>
+                <div class="tag">Events</div>
+                <div class="tag">Courses</div>
+                <div class="tag">Workshops</div>
+            </div>
+
+            <div class="archive-carousel">
+                <h3 class="section-title">Archive</h3>
+                <div class="carousel-inner">
+                    <div class="archive-item">
+                        <h4>2023</h4>
+                        <p>Year</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Dec</h4>
+                        <p>2023</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Nov</h4>
+                        <p>2023</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Oct</h4>
+                        <p>2023</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Sep</h4>
+                        <p>2023</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Aug</h4>
+                        <p>2023</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Jul</h4>
+                        <p>2023</p>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Jun</h4>
+                        <p>2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="email-cta">
+                <h2>Subscribe for Updates</h2>
+                <p>Stay informed about the latest news, events, and educational resources from EduConnect. Join our
+                    community of learners today.</p>
+                <div class="email-input">
+                    <input type="email" placeholder="Enter your email">
+                    <i class="fas fa-envelope envelope-icon"></i>
+                    <button class="btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Page -->
+    <section id="about" class="page">
+        <div class="about-hero">
+            <div class="container">
+                <h1>About Us</h1>
+                <div class="tagline">Empowering Learners Since 2005</div>
+                <a href="#" class="btn btn-accent">Our Programs</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title text-center">Our Story</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2005</div>
+                    <div class="timeline-content">
+                        <h3>Founding Year</h3>
+                        <p>EduConnect was founded by Dr. Sarah Johnson with a vision to create a personalized learning
+                            environment where students could thrive beyond traditional classroom settings. Starting with
+                            just 12 students in a small rented space.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <div class="timeline-content">
+                        <h3>Expansion to Multiple Locations</h3>
+                        <p>Due to growing demand, we opened two new centers in neighboring communities, expanding our
+                            reach and educational impact. Serving over 500 students annually by this point.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <h3>Digital Learning Initiative</h3>
+                        <p>Launched our online learning platform, allowing students from around the world to access our
+                            specialized curriculum and expert tutors. Over 2,000 students enrolled in the first year.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>Pandemic Response</h3>
+                        <p>Developed innovative remote learning solutions to ensure continuity of education during
+                            global challenges, supporting over 5,000 students with seamless transition to online
+                            learning.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h3>Campus Expansion</h3>
+                        <p>Completed a $5 million expansion of our flagship campus, adding STEM labs, creative studios,
+                            and
+                            collaborative learning spaces to serve our growing community of over 8,000 students.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title text-center">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Integrity</h3>
+                    <p>We uphold the highest ethical standards in all our interactions and maintain transparency in our
+                        operations. Our community trusts us to do what's right.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-medal"></i></div>
+                    <h3>Excellence</h3>
+                    <p>We strive for the highest quality in education, continuously improving our programs and teaching
+                        methods to deliver outstanding results.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Innovation</h3>
+                    <p>We embrace new ideas and technologies to enhance learning experiences and outcomes for our
+                        students, staying at the forefront of educational advancement.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                    <h3>Community</h3>
+                    <p>We foster a supportive environment where students, parents, and educators collaborate for
+                        success, creating lifelong connections and networks.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title text-center">Leadership Team</h2>
+            <div class="team-carousel">
+                <div class="team-members">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                            <div class="member-info">
+                                <h4>Dr. Sarah Johnson</h4>
+                                <p>Founder & CEO</p>
+                            </div>
+                        </div>
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p>Founder & CEO</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                            <div class="member-info">
+                                <h4>Michael Chen</h4>
+                                <p>Academic Director</p>
+                            </div>
+                        </div>
+                        <h3>Michael Chen</h3>
+                        <p>Academic Director</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                            <div class="member-info">
+                                <h4>Priya Patel</h4>
+                                <p>STEM Program Lead</p>
+                            </div>
+                        </div>
+                        <h3>Priya Patel</h3>
+                        <p>STEM Program Lead</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                            <div class="member-info">
+                                <h4>David Wilson</h4>
+                                <p>Operations Manager</p>
+                            </div>
+                        </div>
+                        <h3>David Wilson</h3>
+                        <p>Operations Manager</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                            <div class="member-info">
+                                <h4>Emma Rodriguez</h4>
+                                <p>Student Success</p>
+                            </div>
+                        </div>
+                        <h3>Emma Rodriguez</h3>
+                        <p>Student Success</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title text-center">Press & Media</h2>
+            <div class="media-logos">
+                <div class="media-logo">EduTimes</div>
+                <div class="media-logo">Global Ed</div>
+                <div class="media-logo">TeachMag</div>
+                <div class="media-logo">FutureLearn</div>
+                <div class="media-logo">ScholarPress</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Page -->
+    <section id="contact" class="page">
+        <div class="contact-hero">
+            <div class="map-overlay">
+                <h1>Get in Touch</h1>
+                <p>We'd love to hear from you. Reach out for inquiries, partnerships, or just to say hello!</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Address</h3>
+                    <p>123 Education Street<br>Learning City, LC 12345</p>
+                    <a href="#" class="btn btn-outline">Get Directions</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Phone</h3>
+                    <p>(555) 123-4567<br>(555) 765-4321</p>
+                    <a href="#" class="btn btn-outline">Call Now</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p>info@educonnect.com<br>support@educonnect.com</p>
+                    <a href="#" class="btn btn-outline">Email Us</a>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2 class="section-title text-center">Send Us a Message</h2>
+                <form>
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder=" ">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder=" ">
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="subject">
+                            <option value="" disabled selected>Select a subject</option>
+                            <option>General Inquiry</option>
+                            <option>Admissions</option>
+                            <option>Program Information</option>
+                            <option>Technical Support</option>
+                            <option>Feedback</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder=" "></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Send Message</button>
+                </form>
+            </div>
+
+            <div class="office-tabs">
+                <h2 class="section-title">Office Hours & Locations</h2>
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="main">Main Campus</button>
+                    <button class="tab-btn" data-tab="north">North Campus</button>
+                    <button class="tab-btn" data-tab="west">West Campus</button>
+                </div>
+                <div class="tab-content">
+                    <div id="main" class="tab-pane active">
+                        <h3>Main Campus</h3>
+                        <p>123 Education Street, Learning City, LC 12345</p>
+                        <p><strong>Hours:</strong> Mon-Fri: 8:00 AM - 8:00 PM, Sat: 9:00 AM - 5:00 PM, Sun: Closed</p>
+                        <p><strong>Phone:</strong> (555) 123-4567</p>
+                        <p><strong>Email:</strong> main@educonnect.com</p>
+                        <a href="#" class="btn btn-outline">View on Map</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-newsletter">
+                <div>
+                    <h3>Connect With Us</h3>
+                    <p>Follow us on social media for the latest updates and educational content.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for monthly insights and announcements.</p>
+                    <div class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button class="btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (from reference) -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">Edu<span>Connect</span></a>
+                    <p>Empowering students through personalized education and dedicated support since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Counselling</a></li>
+                        <li><a href="#">Announcements</a></li>
+                        <li><a href="#">Career</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Tutor Resources</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hours & Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8am - 8pm</li>
+                        <li><i class="fas fa-clock"></i> Sat: 9am - 5pm</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@educonnect.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 EduConnect. All Rights Reserved.</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="powered-by">
+                        <p>Powered by <a href="https://friendscampus.com" target="_blank">FriendsCampus</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Page Navigation
+        document.querySelectorAll('.page-nav button, .nav-links a').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Get target page
+                const targetPage = this.dataset.page;
+
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Show target page
+                document.getElementById(targetPage).classList.add('active');
+
+                // Update active button
+                document.querySelectorAll('.page-nav button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // For nav links, find corresponding page-nav button
+                if (this.classList.contains('nav-links')) {
+                    const correspondingBtn = document.querySelector(`.page-nav button[data-page="${targetPage}"]`);
+                    if (correspondingBtn) correspondingBtn.classList.add('active');
+                } else {
+                    this.classList.add('active');
+                }
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const tabId = this.dataset.tab;
+
+                // Remove active class from all buttons
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Update tab content (you would expand this for multiple tabs)
+                // This is a simplified version - you'd need to implement tab switching logic
+            });
+        });
+
+        // Tag filtering
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function () {
+                // Remove active class from all tags
+                document.querySelectorAll('.tag').forEach(t => {
+                    t.classList.remove('active');
+                });
+
+                // Add active class to clicked tag
+                this.classList.add('active');
+
+                // Add animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+
+        // Envelope animation
+        const emailInput = document.querySelector('.email-input input');
+        emailInput.addEventListener('focus', () => {
+            document.querySelector('.envelope-icon').style.transform = 'translateY(-50%) rotate(-20deg)';
+        });
+        emailInput.addEventListener('blur', () => {
+            if (!emailInput.value) {
+                document.querySelector('.envelope-icon').style.transform = 'translateY(-50%)';
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll animations
+        const animateOnScroll = () => {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const valueCards = document.querySelectorAll('.value-card');
+
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < window.innerHeight - 100) {
+                    item.classList.add('visible');
+                }
+            });
+
+            valueCards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 100) {
+                    card.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Simulate typing effect for tagline
+        const tagline = document.querySelector('.tagline');
+        const text = "Empowering Learners Since 2005";
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                tagline.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 100);
+            }
+        }
+
+        // Start typing animation when page loads
+        window.addEventListener('load', () => {
+            tagline.innerHTML = '';
+            type();
+        });
+
+        // Form submission handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Here you would add your form submission logic
+                // For demo purposes, we'll just show an alert
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>

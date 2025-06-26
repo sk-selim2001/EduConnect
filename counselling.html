@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Guidance & Counselling</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --secondary: #18BC9C;
+            --accent: #F39C12;
+            --neutral-light: #ECF0F1;
+            --neutral-dark: #7F8C8D;
+            --white: #ffffff;
+            --black: #000000;
+            --radius: 2rem;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--primary);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: #139a7f;
+            box-shadow: 0 15px 30px rgba(24, 188, 156, 0.3);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #e67e22;
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            color: var(--primary);
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Counselling Hero */
+        .counselling-hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1584697964358-3e14ca57658b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counselling-hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            z-index: -1;
+            transition: transform 10s ease;
+        }
+
+        .counselling-hero:hover:after {
+            transform: scale(1.05);
+        }
+
+        .counselling-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .counselling-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        /* Benefits Overview */
+        .benefits {
+            padding: 80px 0;
+            background: var(--neutral-light);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .benefit-card.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(24, 188, 156, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+
+        /* Counselors Grid */
+        .counselors {
+            padding: 80px 0;
+        }
+
+        .counselors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .counselor-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .counselor-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .counselor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .counselor-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .counselor-calendar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+            border-radius: var(--radius) var(--radius) 0 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .counselor-card:hover .counselor-calendar {
+            transform: translateY(0);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+        }
+
+        .calendar-day {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .available {
+            background: rgba(24, 188, 156, 0.2);
+            color: var(--secondary);
+        }
+
+        .unavailable {
+            background: rgba(236, 240, 241, 0.5);
+            color: var(--neutral-dark);
+        }
+
+        /* Session Packages */
+        .packages {
+            padding: 80px 0;
+            background: var(--neutral-light);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-card h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--neutral-dark);
+        }
+
+        .package-features {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--neutral-light);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features i {
+            color: var(--secondary);
+        }
+
+        /* FAQ Accordion */
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            background: var(--white);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--neutral-light);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            background: var(--white);
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 30px 30px;
+        }
+
+        /* Appointment Form */
+        .appointment {
+            padding: 80px 0;
+            background: var(--neutral-light);
+        }
+
+        .appointment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            display: flex;
+            background: var(--neutral-light);
+            padding: 20px;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 10px 0;
+            font-weight: 600;
+            color: var(--neutral-dark);
+        }
+
+        .progress-step.active {
+            color: var(--secondary);
+        }
+
+        .progress-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--neutral-dark);
+            z-index: 1;
+        }
+
+        .progress-step.active:after {
+            background: var(--secondary);
+        }
+
+        .step-indicator {
+            width: 30px;
+            height: 30px;
+            background: var(--neutral-light);
+            border: 2px solid var(--neutral-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step.active .step-indicator {
+            background: var(--secondary);
+            color: var(--white);
+            border-color: var(--secondary);
+        }
+
+        .form-panel {
+            padding: 40px;
+            display: none;
+        }
+
+        .form-panel.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--neutral-light);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(24, 188, 156, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .confirmation i {
+            font-size: 5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-column p {
+            color: var(--neutral-light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--neutral-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .footer-links a:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-links a:hover:before {
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: var(--neutral-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .powered-by {
+            color: var(--neutral-light);
+        }
+
+        .powered-by a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .counselors-grid,
+            .benefits-grid,
+            .package-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .counselling-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .counselling-hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Edu<span>Connect</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#" class="active">Counselling</a></li>
+                    <li><a href="#">Announcements</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <button class="btn">Enroll Now</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Counselling Hero -->
+    <section class="counselling-hero">
+        <div class="container">
+            <h1>Personalized Guidance for Your Academic Journey</h1>
+            <p>Expert counselling to help you navigate educational choices and career paths</p>
+            <a href="#" class="btn">Book Now</a>
+        </div>
+    </section>
+
+    <!-- Benefits Overview -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefits of Our Counselling</h2>
+                <p>How our guidance services help students succeed</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Planning</h3>
+                    <p>Strategic course selection and academic roadmap development tailored to your strengths and goals.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Career Mapping</h3>
+                    <p>Identify your career path and develop a step-by-step plan to achieve your professional
+                        aspirations.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Mental Wellness</h3>
+                    <p>Support for stress management, motivation, and maintaining a healthy study-life balance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Our Counselors -->
+    <section class="counselors">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Counselors</h2>
+                <p>Experienced professionals dedicated to your success</p>
+            </div>
+            <div class="counselors-grid">
+                <div class="counselor-card">
+                    <div class="counselor-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                            alt="Dr. Sarah Johnson">
+                    </div>
+                    <div class="counselor-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p>Academic & Career Counselor</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (85 reviews)</span>
+                        </div>
+                    </div>
+                    <div class="counselor-calendar">
+                        <h4>Availability This Week</h4>
+                        <div class="calendar-grid">
+                            <div class="calendar-day unavailable">M</div>
+                            <div class="calendar-day available">T</div>
+                            <div class="calendar-day available">W</div>
+                            <div class="calendar-day available">T</div>
+                            <div class="calendar-day available">F</div>
+                            <div class="calendar-day unavailable">S</div>
+                            <div class="calendar-day unavailable">S</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="counselor-card">
+                    <div class="counselor-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
+                            alt="Michael Chen">
+                    </div>
+                    <div class="counselor-info">
+                        <h3>Michael Chen</h3>
+                        <p>College Admissions Specialist</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (92 reviews)</span>
+                        </div>
+                    </div>
+                    <div class="counselor-calendar">
+                        <h4>Availability This Week</h4>
+                        <div class="calendar-grid">
+                            <div class="calendar-day available">M</div>
+                            <div class="calendar-day available">T</div>
+                            <div class="calendar-day available">W</div>
+                            <div class="calendar-day unavailable">T</div>
+                            <div class="calendar-day available">F</div>
+                            <div class="calendar-day available">S</div>
+                            <div class="calendar-day unavailable">S</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="counselor-card">
+                    <div class="counselor-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80"
+                            alt="Priya Patel">
+                    </div>
+                    <div class="counselor-info">
+                        <h3>Priya Patel</h3>
+                        <p>Mental Wellness Counselor</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.2 (78 reviews)</span>
+                        </div>
+                    </div>
+                    <div class="counselor-calendar">
+                        <h4>Availability This Week</h4>
+                        <div class="calendar-grid">
+                            <div class="calendar-day unavailable">M</div>
+                            <div class="calendar-day available">T</div>
+                            <div class="calendar-day unavailable">W</div>
+                            <div class="calendar-day available">T</div>
+                            <div class="calendar-day available">F</div>
+                            <div class="calendar-day unavailable">S</div>
+                            <div class="calendar-day unavailable">S</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Session Packages -->
+    <section class="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Session Packages</h2>
+                <p>Choose the counseling package that fits your needs</p>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="single">Single Session</button>
+                <button class="tab-btn" data-tab="five-pack">5-Pack</button>
+                <button class="tab-btn" data-tab="ten-pack">10-Pack</button>
+            </div>
+            <div class="tab-content active" id="single">
+                <div class="package-cards">
+                    <div class="package-card">
+                        <h3>Introductory Session</h3>
+                        <p>Perfect for first-time students</p>
+                        <div class="price">$99<span>/session</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> 60-minute personalized session</li>
+                            <li><i class="fas fa-check-circle"></i> Academic assessment</li>
+                            <li><i class="fas fa-check-circle"></i> Initial roadmap development</li>
+                            <li><i class="fas fa-check-circle"></i> Resource recommendations</li>
+                        </ul>
+                        <button class="btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="five-pack">
+                <div class="package-cards">
+                    <div class="package-card">
+                        <h3>Standard Package</h3>
+                        <p>Ideal for focused guidance</p>
+                        <div class="price">$449<span> ($90/session)</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> Five 60-minute sessions</li>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive academic assessment</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized roadmap development</li>
+                            <li><i class="fas fa-check-circle"></i> Career exploration activities</li>
+                            <li><i class="fas fa-check-circle"></i> Priority scheduling</li>
+                        </ul>
+                        <button class="btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="ten-pack">
+                <div class="package-cards">
+                    <div class="package-card">
+                        <h3>Premium Package</h3>
+                        <p>Complete guidance solution</p>
+                        <div class="price">$799<span> ($80/session)</span></div>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> Ten 60-minute sessions</li>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive academic assessment</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized roadmap development</li>
+                            <li><i class="fas fa-check-circle"></i> Career exploration activities</li>
+                            <li><i class="fas fa-check-circle"></i> Priority scheduling</li>
+                            <li><i class="fas fa-check-circle"></i> Email support between sessions</li>
+                            <li><i class="fas fa-check-circle"></i> College application review (2)</li>
+                        </ul>
+                        <button class="btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our counselling services</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I prepare for my first counselling session?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend preparing by thinking about your academic history, current challenges, and
+                            future goals. Bring any relevant transcripts, test scores, or documents. It's also helpful
+                            to write down specific questions you want to address during the session.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's the difference between academic and career counselling?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Academic counselling focuses on course selection, study strategies, and academic planning to
+                            help you succeed in your current educational program. Career counselling helps you explore
+                            career options, identify your strengths and interests, and develop a plan to achieve your
+                            professional goals.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I change counselors if I'm not satisfied?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We want you to feel comfortable with your counselor. If after your first session
+                            you feel another counselor might be a better fit, simply contact our support team and we'll
+                            help you find a better match at no additional cost.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How often should I schedule counselling sessions?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This depends on your individual needs. Many students start with weekly or bi-weekly sessions,
+                            then transition to monthly check-ins. Your counselor will work with you to determine the
+                            optimal schedule based on your goals and progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Form -->
+    <section class="appointment">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book an Appointment</h2>
+                <p>Start your journey to academic and career success</p>
+            </div>
+            <div class="appointment-container">
+                <div class="progress-bar">
+                    <div class="progress-step active">
+                        <div class="step-indicator">1</div>
+                        <span>Personal Info</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-indicator">2</div>
+                        <span>Counselor & Time</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-indicator">3</div>
+                        <span>Confirmation</span>
+                    </div>
+                </div>
+                <div class="form-panel active" id="panel-1">
+                    <h3>Personal Information</h3>
+                    <p>Tell us about yourself to get started</p>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="education">Current Education Level</label>
+                        <select id="education">
+                            <option value="">Select your education level</option>
+                            <option value="highschool">High School</option>
+                            <option value="undergrad">Undergraduate</option>
+                            <option value="grad">Graduate</option>
+                            <option value="professional">Professional</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goals">What are your primary goals for counselling?</label>
+                        <textarea id="goals" rows="4" placeholder="Describe your academic and career goals"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-outline" disabled>Previous</button>
+                        <button class="btn next-btn" data-next="2">Next: Choose Counselor</button>
+                    </div>
+                </div>
+                <div class="form-panel" id="panel-2">
+                    <h3>Select Counselor & Time</h3>
+                    <p>Choose your preferred counselor and available time slot</p>
+                    <div class="form-group">
+                        <label for="counselor">Select Counselor</label>
+                        <select id="counselor">
+                            <option value="">Choose a counselor</option>
+                            <option value="sarah">Dr. Sarah Johnson - Academic & Career</option>
+                            <option value="michael">Michael Chen - College Admissions</option>
+                            <option value="priya">Priya Patel - Mental Wellness</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <select id="time">
+                            <option value="">Select a time slot</option>
+                            <option value="9am">9:00 AM - 10:00 AM</option>
+                            <option value="11am">11:00 AM - 12:00 PM</option>
+                            <option value="2pm">2:00 PM - 3:00 PM</option>
+                            <option value="4pm">4:00 PM - 5:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Select Package</label>
+                        <select id="package">
+                            <option value="">Choose a package</option>
+                            <option value="single">Single Session ($99)</option>
+                            <option value="five">5-Pack ($449)</option>
+                            <option value="ten">10-Pack ($799)</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-outline prev-btn" data-prev="1">Previous</button>
+                        <button class="btn next-btn" data-next="3">Next: Confirmation</button>
+                    </div>
+                </div>
+                <div class="form-panel" id="panel-3">
+                    <div class="confirmation">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Appointment Request Submitted!</h3>
+                        <p>Thank you for booking with EduConnect Counselling. We've received your request and will
+                            contact you within 24 hours to confirm your appointment details.</p>
+                        <p>In the meantime, check your email for a confirmation message with next steps.</p>
+                        <button class="btn">Return to Home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">Edu<span>Connect</span></a>
+                    <p>Empowering students through personalized education and dedicated support since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Counselling</a></li>
+                        <li><a href="#">Announcements</a></li>
+                        <li><a href="#">Career</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Tutor Resources</a></li>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hours & Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8am - 8pm</li>
+                        <li><i class="fas fa-clock"></i> Sat: 9am - 5pm</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@educonnect.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 EduConnect. All Rights Reserved.</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="powered-by">
+                        <p>Powered by <a href="https://friendscampus.com" target="_blank">FriendsCampus</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            const backToTop = document.querySelector('.back-to-top');
+
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Benefits animation on scroll
+        const benefitCards = document.querySelectorAll('.benefit-card');
+
+        function animateBenefits() {
+            benefitCards.forEach((card, index) => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (cardTop < windowHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('appear');
+                    }, index * 200);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateBenefits);
+        window.addEventListener('load', animateBenefits);
+
+        // Session Packages Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Show corresponding content
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Appointment Form Wizard
+        const nextBtns = document.querySelectorAll('.next-btn');
+        const prevBtns = document.querySelectorAll('.prev-btn');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        const formPanels = document.querySelectorAll('.form-panel');
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentPanel = btn.closest('.form-panel');
+                const nextPanelId = btn.getAttribute('data-next');
+
+                // Hide current panel
+                currentPanel.classList.remove('active');
+
+                // Show next panel
+                document.getElementById(`panel-${nextPanelId}`).classList.add('active');
+
+                // Update progress bar
+                progressSteps.forEach(step => step.classList.remove('active'));
+                document.querySelector(`.progress-step:nth-child(${nextPanelId})`).classList.add('active');
+            });
+        });
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentPanel = btn.closest('.form-panel');
+                const prevPanelId = btn.getAttribute('data-prev');
+
+                // Hide current panel
+                currentPanel.classList.remove('active');
+
+                // Show previous panel
+                document.getElementById(`panel-${prevPanelId}`).classList.add('active');
+
+                // Update progress bar
+                progressSteps.forEach(step => step.classList.remove('active'));
+                document.querySelector(`.progress-step:nth-child(${prevPanelId})`).classList.add('active');
+            });
+        });
+
+        // Back to top button
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form validation
+        const formInputs = document.querySelectorAll('input, select, textarea');
+
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+    </script>
+</body>
+
+</html>

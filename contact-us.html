@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect | Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2C3E50;
+            --secondary: #18BC9C;
+            --accent: #F39C12;
+            --neutral-light: #ECF0F1;
+            --neutral-dark: #7F8C8D;
+            --radius: 2rem;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background: #159b80;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(24, 188, 156, 0.3);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #e67e22;
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            height: 500px;
+            position: relative;
+            border-radius: 0 0 var(--radius) var(--radius);
+            margin-bottom: 60px;
+            overflow: hidden;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #e9ecef;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            text-align: center;
+        }
+
+        .map-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            font-size: 40px;
+            color: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -100%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -100%) scale(1.2);
+            }
+
+            100% {
+                transform: translate(-50%, -100%) scale(1);
+            }
+        }
+
+        /* Contact Details */
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 250px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary);
+            z-index: -1;
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path 0.5s ease;
+        }
+
+        .contact-item:hover::before {
+            clip-path: circle(100% at 50% 50%);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            color: white;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: white;
+            color: var(--secondary);
+        }
+
+        .contact-item:hover h3,
+        .contact-item:hover p {
+            color: white;
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--neutral-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .contact-item p {
+            color: var(--neutral-dark);
+            transition: color 0.3s;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--neutral-dark);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid var(--neutral-light);
+            border-radius: var(--radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        .form-group input:focus+label,
+        .form-group textarea:focus+label,
+        .form-group input:not(:placeholder-shown)+label,
+        .form-group textarea:not(:placeholder-shown)+label {
+            top: -12px;
+            left: 15px;
+            background: white;
+            padding: 0 10px;
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Office Hours & Locations */
+        .office-tabs {
+            margin: 60px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: var(--neutral-light);
+            border: none;
+            border-radius: var(--radius) var(--radius) 0 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            background: white;
+            border-radius: 0 var(--radius) var(--radius) var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .branch-info {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .branch-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .branch-map {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background: var(--neutral-light);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-dark);
+        }
+
+        /* Social & Newsletter */
+        .social-newsletter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: var(--neutral-light);
+            border-radius: var(--radius);
+            padding: 50px;
+            margin-top: 60px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .social-icon:hover {
+            transform: rotate(15deg) scale(1.1);
+            color: var(--secondary);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--secondary);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(24, 188, 156, 0.3);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(24, 188, 156, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(24, 188, 156, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--neutral-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #159b80;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .branch-info {
+                flex-direction: column;
+            }
+
+            .branch-map {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-details {
+                gap: 20px;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+
+            .social-newsletter {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .contact-hero {
+                height: 400px;
+            }
+
+            .contact-item {
+                width: 100%;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                border-radius: var(--radius);
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Edu<span>Connect</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#" class="active">Contact Us</a></li>
+                    <li><a href="#">Programs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Us Page -->
+    <main>
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div id="map"></div>
+            <div class="map-overlay">
+                <div>
+                    <h1>Get in Touch</h1>
+                    <p>We'd love to hear from you. Reach out to us with any questions or inquiries.</p>
+                </div>
+            </div>
+            <div class="map-pin">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+        </section>
+
+        <!-- Contact Details -->
+        <section>
+            <div class="container">
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Address</h3>
+                        <p>123 Education Street<br>Learning City, LC 12345</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>(555) 123-4567<br>(555) 765-4321</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>info@educonnect.com<br>support@educonnect.com</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2 class="text-center">Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder=" " required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder=" " required>
+                            <label for="email">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" required>
+                                <option value="" disabled selected>Select a subject</option>
+                                <option>General Inquiry</option>
+                                <option>Admissions</option>
+                                <option>Program Information</option>
+                                <option>Technical Support</option>
+                                <option>Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder=" " required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-accent">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Office Hours & Locations -->
+                <div class="office-tabs">
+                    <h2>Office Hours & Locations</h2>
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="main">Main Campus</button>
+                        <button class="tab-btn" data-tab="north">North Campus</button>
+                        <button class="tab-btn" data-tab="west">West Campus</button>
+                    </div>
+                    <div id="main" class="tab-content active">
+                        <div class="branch-info">
+                            <div class="branch-details">
+                                <h3>Main Campus</h3>
+                                <p>123 Education Street, Learning City, LC 12345</p>
+                                <p><strong>Hours:</strong><br>
+                                    Mon-Fri: 8:00 AM - 8:00 PM<br>
+                                    Sat: 9:00 AM - 5:00 PM<br>
+                                    Sun: Closed</p>
+                                <p><strong>Phone:</strong> (555) 123-4567</p>
+                                <p><strong>Email:</strong> main@educonnect.com</p>
+                            </div>
+                            <div class="branch-map">
+                                <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                                <p>Main Campus Location</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="north" class="tab-content">
+                        <div class="branch-info">
+                            <div class="branch-details">
+                                <h3>North Campus</h3>
+                                <p>456 Learning Avenue, North City, NC 67890</p>
+                                <p><strong>Hours:</strong><br>
+                                    Mon-Thu: 9:00 AM - 7:00 PM<br>
+                                    Fri: 9:00 AM - 6:00 PM<br>
+                                    Sat: 10:00 AM - 4:00 PM<br>
+                                    Sun: Closed</p>
+                                <p><strong>Phone:</strong> (555) 234-5678</p>
+                                <p><strong>Email:</strong> north@educonnect.com</p>
+                            </div>
+                            <div class="branch-map">
+                                <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                                <p>North Campus Location</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="west" class="tab-content">
+                        <div class="branch-info">
+                            <div class="branch-details">
+                                <h3>West Campus</h3>
+                                <p>789 Knowledge Road, West Town, WT 13579</p>
+                                <p><strong>Hours:</strong><br>
+                                    Mon-Fri: 10:00 AM - 6:00 PM<br>
+                                    Sat: 10:00 AM - 3:00 PM<br>
+                                    Sun: Closed</p>
+                                <p><strong>Phone:</strong> (555) 345-6789</p>
+                                <p><strong>Email:</strong> west@educonnect.com</p>
+                            </div>
+                            <div class="branch-map">
+                                <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                                <p>West Campus Location</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social & Newsletter -->
+                <div class="social-newsletter">
+                    <div>
+                        <h3>Connect With Us</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Stay Updated</h3>
+                        <p>Subscribe to our newsletter for the latest news and updates</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                            <button class="btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EduConnect</h3>
+                    <p>Empowering learners of all ages through innovative education since 2005. Our mission is to
+                        transform lives through knowledge.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Programs</a></li>
+                        <li><a href="#">Tutoring</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">K-12 Tutoring</a></li>
+                        <li><a href="#">Test Preparation</a></li>
+                        <li><a href="#">STEM Workshops</a></li>
+                        <li><a href="#">College Counseling</a></li>
+                        <li><a href="#">Adult Education</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Education Street</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> (555) 123-4567</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@educonnect.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 EduConnect Education Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all buttons
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                // Show selected tab content
+                const tabId = this.dataset.tab;
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Contact form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simple validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && subject && message) {
+                // Form submission logic would go here
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+
+                // Reset floating labels
+                document.querySelectorAll('.form-group label').forEach(label => {
+                    label.style.top = '20px';
+                    label.style.left = '20px';
+                    label.style.fontSize = '16px';
+                    label.style.background = 'transparent';
+                    label.style.color = 'var(--neutral-dark)';
+                });
+            } else {
+                alert('Please fill in all fields');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Simple map implementation
+        function initMap() {
+            // In a real implementation, this would initialize Google Maps
+            // For this demo, we'll just simulate with CSS
+            const mapElement = document.getElementById('map');
+            mapElement.innerHTML = `
+                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#e9ecef;">
+                    <div style="text-align:center;color:var(--neutral-dark);">
+                        <i class="fas fa-map" style="font-size:60px;margin-bottom:20px;"></i>
+                        <h3>Interactive Map</h3>
+                        <p>Location: 123 Education Street, Learning City</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize the map on page load
+        window.addEventListener('load', initMap);
+
+        // Newsletter input animation
+        const newsletterInput = document.querySelector('.newsletter-input');
+        newsletterInput.addEventListener('focus', function () {
+            if (!this.value) {
+                this.style.animation = 'pulse 1.5s infinite';
+            }
+        });
+
+        newsletterInput.addEventListener('blur', function () {
+            this.style.animation = 'none';
+        });
+    </script>
+</body>
+
+</html>
