@@ -170,6 +170,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
         }
 
         .logo {
@@ -179,6 +180,7 @@
             color: var(--primary);
             text-decoration: none;
             transition: transform 0.3s ease;
+            z-index: 1001;
         }
 
         .logo span {
@@ -261,6 +263,136 @@
             background: var(--secondary);
             color: var(--white);
             transform: translateY(-3px);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            position: relative;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2),
+        .hamburger span:nth-child(3) {
+            top: 10px;
+        }
+
+        .hamburger span:nth-child(4) {
+            top: 20px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        .hamburger.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        .hamburger.open span:nth-child(4) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            z-index: 1000;
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu .nav-links {
+            display: block;
+        }
+
+        .mobile-menu .nav-links li {
+            margin: 20px 0;
+        }
+
+        .mobile-menu .nav-links a {
+            font-size: 1.2rem;
+        }
+
+        .mobile-menu .social-icons {
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--secondary);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Counselling Hero */
@@ -877,13 +1009,32 @@
         }
 
         /* Responsive */
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hamburger {
+                display: block;
             }
 
             .nav-links {
                 display: none;
+            }
+
+            .nav-actions .social-icons {
+                display: none;
+            }
+
+            .counselling-hero h1 {
+                font-size: 3rem;
+            }
+
+            .counselling-hero p {
+                font-size: 1.2rem;
             }
         }
 
@@ -919,6 +1070,41 @@
                 gap: 20px;
                 text-align: center;
             }
+
+            .progress-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+
+            .progress-step {
+                text-align: left;
+                padding: 10px 0 10px 40px;
+                position: relative;
+            }
+
+            .progress-step:not(:last-child):after {
+                top: 0;
+                left: 15px;
+                width: 2px;
+                height: 100%;
+                right: auto;
+            }
+
+            .step-indicator {
+                position: absolute;
+                left: 0;
+                top: 10px;
+                margin: 0;
+            }
+
+            .form-panel {
+                padding: 30px 20px;
+            }
+
+            .confirmation i {
+                font-size: 3.5rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -945,6 +1131,67 @@
             .tabs {
                 flex-direction: column;
             }
+
+            .tab-btn {
+                width: 100%;
+            }
+
+            .mobile-menu {
+                width: 90%;
+            }
+
+            .benefit-card,
+            .package-card {
+                padding: 30px 20px;
+            }
+
+            .faq-question {
+                padding: 15px 20px;
+            }
+
+            .faq-answer {
+                padding: 0 20px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 20px 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .counselling-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .benefit-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .price {
+                font-size: 2rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -955,6 +1202,12 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">Edu<span>Connect</span></a>
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="class.html">Classes</a></li>
@@ -975,6 +1228,28 @@
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="class.html">Classes</a></li>
+            <li><a href="counselling.html" class="active">Guidance & Counselling</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <!-- <li><a href="#">Career</a></li> -->
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="overlay"></div>
 
     <!-- Counselling Hero -->
     <section class="counselling-hero">
@@ -1432,6 +1707,29 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.classList.toggle('no-scroll');
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        mobileMenuClose.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('.mobile-menu .nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
         // Header scroll effect
         window.addEventListener('scroll', function () {
             const header = document.querySelector('header');

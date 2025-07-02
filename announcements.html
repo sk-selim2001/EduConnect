@@ -4,29 +4,829 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect | Education Platform</title>
+    <title>Announcements - EduConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./styles/announcements.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #18bc9c;
+            --accent: #f39c12;
+            --neutral-light: #ecf0f1;
+            --neutral-dark: #7f8c8d;
+            --white: #ffffff;
+            --black: #000000;
+            --radius: 2rem;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Open Sans", sans-serif;
+            color: var(--primary);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 4px 32px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: #139a7f;
+            box-shadow: 0 15px 30px rgba(24, 188, 156, 0.3);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background: #e67e22;
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            font-family: "Poppins", sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        ul li .active {
+            color: var(--secondary);
+            text-decoration: underline;
+            text-decoration-thickness: 2.2px;
+            text-underline-offset: 10.2px;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            color: var(--primary);
+            margin: 0 5px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .mobile-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-close-btn:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: block;
+            padding: 10px 0;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-links .active {
+            color: var(--secondary);
+        }
+
+        .mobile-social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .mobile-social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            color: var(--primary);
+            margin: 0 10px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .mobile-social-icons a:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Announcements Section */
+        .announcements {
+            padding-top: 120px;
+            background-color: var(--neutral-light);
+        }
+
+        .announcement-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .announcement-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .announcement-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .announcement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .announcement-card:hover .announcement-image img {
+            transform: scale(1.05);
+        }
+
+        .announcement-content {
+            padding: 25px;
+        }
+
+        .announcement-date {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .announcement-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .announcement-excerpt {
+            color: var(--neutral-dark);
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--accent);
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        .upcoming-events {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .event-card {
+            display: flex;
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 20px;
+            min-width: 100px;
+        }
+
+        .event-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-month {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .event-time {
+            display: flex;
+            align-items: center;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .event-time i {
+            margin-right: 8px;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            color: var(--neutral-dark);
+            margin-bottom: 15px;
+        }
+
+        .event-location i {
+            margin-right: 8px;
+        }
+
+        .event-description {
+            color: var(--neutral-dark);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-column p {
+            color: var(--neutral-light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--neutral-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .footer-links a:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-links a:hover:before {
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        .footer-bottom-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: var(--neutral-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        .powered-by {
+            color: var(--neutral-light);
+        }
+
+        .powered-by a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .footer-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-actions .social-icons {
+                display: none;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .event-date {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 20px;
+                padding: 15px 25px;
+            }
+
+            .event-day {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .announcement-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .announcements {
+                padding-top: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .event-date {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Header & Navigation (from reference) -->
+    <!-- Header & Navigation -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">Edu<span>Connect</span></a>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <a href="index.html" class="logo">Edu<span>Connect</span></a>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="class.html">Classes</a></li>
                     <li><a href="counselling.html">Guidance & Counselling</a></li>
                     <li><a href="announcements.html" class="active">Announcements</a></li>
-                    <!-- <li><a href="#">Career</a></li> -->
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
                 </ul>
@@ -37,416 +837,193 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Page Navigation -->
-    <div class="container">
-        <div class="page-nav">
-            <button class="active" data-page="announcements">Announcements</button>
-            <button data-page="about">About Us</button>
-            <button data-page="contact">Contact Us</button>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="mobile-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="class.html">Classes</a></li>
+            <li><a href="counselling.html">Guidance & Counselling</a></li>
+            <li><a href="announcements.html" class="active">Announcements</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <div class="mobile-social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
+    <div class="overlay"></div>
 
-    <!-- Announcements Page -->
-    <section id="announcements" class="page active">
-        <div class="announcements-hero">
-            <div class="container">
-                <h1>Latest News & Updates</h1>
-                <select class="month-picker">
-                    <option>January 2024</option>
-                    <option>February 2024</option>
-                    <option selected>March 2024</option>
-                    <option>April 2024</option>
-                    <option>May 2024</option>
-                </select>
-            </div>
-        </div>
-
+    <!-- Announcements Section -->
+    <section class="announcements">
         <div class="container">
-            <div class="announcements-grid">
-                <div class="announcements-list">
-                    <div class="announcement-item" style="animation-delay: 0.1s">
-                        <h3>Spring Semester Registration Opens</h3>
-                        <span class="announcement-date">March 15, 2024</span>
-                        <p>Registration for the Spring 2024 semester is now open. Secure your spot in our most popular
-                            courses before they fill up. Early registrants receive a 10% discount on tuition fees.</p>
-                        <a href="#" class="btn btn-outline">Register Now</a>
+            <div class="section-title">
+                <h2>Latest Announcements</h2>
+                <p>Stay updated with important news and updates from EduConnect</p>
+            </div>
+            <div class="announcement-container">
+                <div class="announcement-card">
+                    <div class="announcement-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80"
+                            alt="Summer Batch Registration">
                     </div>
-                    <div class="announcement-item" style="animation-delay: 0.2s">
-                        <h3>New STEM Workshop Series</h3>
-                        <span class="announcement-date">March 10, 2024</span>
-                        <p>We're launching a new STEM workshop series for high school students, starting April 5th.
-                            Hands-on learning in robotics, AI, and advanced programming. Limited seats available.</p>
-                        <a href="#" class="btn btn-outline">Learn More</a>
-                    </div>
-                    <div class="announcement-item" style="animation-delay: 0.3s">
-                        <h3>Summer Camp Early Bird Discount</h3>
-                        <span class="announcement-date">March 5, 2024</span>
-                        <p>Register before April 1st to receive 15% off our summer enrichment programs. Programs include
-                            coding, creative writing, and leadership development.</p>
-                        <a href="#" class="btn btn-outline">View Programs</a>
-                    </div>
-                    <div class="announcement-item" style="animation-delay: 0.4s">
-                        <h3>Parent-Teacher Conference Schedule</h3>
-                        <span class="announcement-date">March 1, 2024</span>
-                        <p>Spring parent-teacher conferences will be held March 20-22. Sign-up sheets are now available
-                            in the parent portal. Please schedule your appointment at your earliest convenience.</p>
-                        <a href="#" class="btn btn-outline">Access Portal</a>
-                    </div>
-                    <div class="announcement-item" style="animation-delay: 0.5s">
-                        <h3>Scholarship Application Deadline</h3>
-                        <span class="announcement-date">February 25, 2024</span>
-                        <p>Reminder: Applications for the Excellence in Education scholarship are due by March 15th.
-                            Five $5,000 awards available for outstanding students.</p>
-                        <a href="#" class="btn btn-outline">Apply Now</a>
+                    <div class="announcement-content">
+                        <span class="announcement-date">June 15, 2025</span>
+                        <h3 class="announcement-title">Summer Batch Registration Open</h3>
+                        <p class="announcement-excerpt">Registration for our special summer intensive courses is now
+                            open. Limited seats available for each batch.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-
-                <div class="featured-announcement">
-                    <div class="featured-image">
-                        <i class="fas fa-building"></i>
+                <div class="announcement-card">
+                    <div class="announcement-image">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
+                            alt="Scholarship Program">
                     </div>
-                    <div class="featured-content">
-                        <h3>New Campus Expansion Complete</h3>
-                        <span class="announcement-date">March 18, 2024</span>
-                        <p>We're thrilled to announce the completion of our new campus expansion project! The 10,000 sq
-                            ft addition includes state-of-the-art science laboratories, a modern media center, and
-                            collaborative learning spaces designed to foster innovation and creativity.</p>
-                        <p>The grand opening ceremony will take place on April 10th at 10:00 AM. All students, parents,
-                            and community members are invited to join us for a tour of the new facilities and
-                            refreshments.</p>
-                        <a href="#" class="btn">Read More</a>
+                    <div class="announcement-content">
+                        <span class="announcement-date">June 10, 2025</span>
+                        <h3 class="announcement-title">Merit Scholarship Program 2025</h3>
+                        <p class="announcement-excerpt">Applications invited for our annual merit scholarship program.
+                            Last date to apply is June 30, 2025.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-            </div>
-
-            <div class="filter-tags">
-                <div class="tag active">All</div>
-                <div class="tag">Exams</div>
-                <div class="tag">Holiday</div>
-                <div class="tag">Achievements</div>
-                <div class="tag">Events</div>
-                <div class="tag">Courses</div>
-                <div class="tag">Workshops</div>
-            </div>
-
-            <div class="archive-carousel">
-                <h3 class="section-title">Archive</h3>
-                <div class="carousel-inner">
-                    <div class="archive-item">
-                        <h4>2023</h4>
-                        <p>Year</p>
+                <div class="announcement-card">
+                    <div class="announcement-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+                            alt="Parent-Teacher Meeting">
                     </div>
-                    <div class="archive-item">
-                        <h4>Dec</h4>
-                        <p>2023</p>
-                    </div>
-                    <div class="archive-item">
-                        <h4>Nov</h4>
-                        <p>2023</p>
-                    </div>
-                    <div class="archive-item">
-                        <h4>Oct</h4>
-                        <p>2023</p>
-                    </div>
-                    <div class="archive-item">
-                        <h4>Sep</h4>
-                        <p>2023</p>
-                    </div>
-                    <div class="archive-item">
-                        <h4>Aug</h4>
-                        <p>2023</p>
-                    </div>
-                    <div class="archive-item">
-                        <h4>Jul</h4>
-                        <p>2023</p>
-                    </div>
-                    <div class="archive-item">
-                        <h4>Jun</h4>
-                        <p>2023</p>
+                    <div class="announcement-content">
+                        <span class="announcement-date">June 5, 2025</span>
+                        <h3 class="announcement-title">Monthly Parent-Teacher Meeting</h3>
+                        <p class="announcement-excerpt">Schedule for June parent-teacher meetings has been published.
+                            Please check your student portal.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-            </div>
-
-            <div class="email-cta">
-                <h2>Subscribe for Updates</h2>
-                <p>Stay informed about the latest news, events, and educational resources from EduConnect. Join our
-                    community of learners today.</p>
-                <div class="email-input">
-                    <input type="email" placeholder="Enter your email">
-                    <i class="fas fa-envelope envelope-icon"></i>
-                    <button class="btn">Subscribe</button>
+                <div class="announcement-card">
+                    <div class="announcement-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80"
+                            alt="Workshop Announcement">
+                    </div>
+                    <div class="announcement-content">
+                        <span class="announcement-date">May 28, 2025</span>
+                        <h3 class="announcement-title">Career Guidance Workshop</h3>
+                        <p class="announcement-excerpt">Special workshop on career options after 12th science stream.
+                            Register by June 5th.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <div class="announcement-image">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
+                            alt="Holiday Notice">
+                    </div>
+                    <div class="announcement-content">
+                        <span class="announcement-date">May 20, 2025</span>
+                        <h3 class="announcement-title">Summer Vacation Schedule</h3>
+                        <p class="announcement-excerpt">Institute will remain closed from June 1-7 for summer break.
+                            Regular classes resume June 8.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <div class="announcement-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+                            alt="New Batch Announcement">
+                    </div>
+                    <div class="announcement-content">
+                        <span class="announcement-date">May 15, 2025</span>
+                        <h3 class="announcement-title">New Weekend Batch for JEE/NEET</h3>
+                        <p class="announcement-excerpt">Starting June 12, we're launching a new weekend batch for
+                            competitive exam preparation.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us Page -->
-    <section id="about" class="page">
-        <div class="about-hero">
-            <div class="container">
-                <h1>About Us</h1>
-                <div class="tagline">Empowering Learners Since 2005</div>
-                <a href="#" class="btn btn-accent">Our Programs</a>
-            </div>
-        </div>
-
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-events">
         <div class="container">
-            <h2 class="section-title text-center">Our Story</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-year">2005</div>
-                    <div class="timeline-content">
-                        <h3>Founding Year</h3>
-                        <p>EduConnect was founded by Dr. Sarah Johnson with a vision to create a personalized learning
-                            environment where students could thrive beyond traditional classroom settings. Starting with
-                            just 12 students in a small rented space.</p>
+            <div class="section-title">
+                <h2>Upcoming Events</h2>
+                <p>Mark your calendars for these important events</p>
+            </div>
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="event-day">25</span>
+                        <span class="event-month">June</span>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-time">
+                            <i class="far fa-clock"></i> 10:00 AM - 12:00 PM
+                        </div>
+                        <h3 class="event-title">Annual Science Exhibition</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Main Campus Auditorium
+                        </div>
+                        <p class="event-description">Showcasing innovative projects by our students. Open to all parents
+                            and visitors.</p>
+                        <a href="#" class="btn btn-accent">Register Now</a>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2010</div>
-                    <div class="timeline-content">
-                        <h3>Expansion to Multiple Locations</h3>
-                        <p>Due to growing demand, we opened two new centers in neighboring communities, expanding our
-                            reach and educational impact. Serving over 500 students annually by this point.</p>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="event-day">30</span>
+                        <span class="event-month">June</span>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2015</div>
-                    <div class="timeline-content">
-                        <h3>Digital Learning Initiative</h3>
-                        <p>Launched our online learning platform, allowing students from around the world to access our
-                            specialized curriculum and expert tutors. Over 2,000 students enrolled in the first year.
+                    <div class="event-content">
+                        <div class="event-time">
+                            <i class="far fa-clock"></i> 2:00 PM - 4:00 PM
+                        </div>
+                        <h3 class="event-title">Career Counselling Session</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Seminar Hall, Building A
+                        </div>
+                        <p class="event-description">Expert guidance on career options after 10th and 12th standards.
                         </p>
+                        <a href="#" class="btn btn-accent">Register Now</a>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2020</div>
-                    <div class="timeline-content">
-                        <h3>Pandemic Response</h3>
-                        <p>Developed innovative remote learning solutions to ensure continuity of education during
-                            global challenges, supporting over 5,000 students with seamless transition to online
-                            learning.</p>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="event-day">05</span>
+                        <span class="event-month">July</span>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2023</div>
-                    <div class="timeline-content">
-                        <h3>Campus Expansion</h3>
-                        <p>Completed a $5 million expansion of our flagship campus, adding STEM labs, creative studios,
-                            and
-                            collaborative learning spaces to serve our growing community of over 8,000 students.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="section-title text-center">Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Integrity</h3>
-                    <p>We uphold the highest ethical standards in all our interactions and maintain transparency in our
-                        operations. Our community trusts us to do what's right.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-medal"></i></div>
-                    <h3>Excellence</h3>
-                    <p>We strive for the highest quality in education, continuously improving our programs and teaching
-                        methods to deliver outstanding results.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>Innovation</h3>
-                    <p>We embrace new ideas and technologies to enhance learning experiences and outcomes for our
-                        students, staying at the forefront of educational advancement.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-users"></i></div>
-                    <h3>Community</h3>
-                    <p>We foster a supportive environment where students, parents, and educators collaborate for
-                        success, creating lifelong connections and networks.</p>
-                </div>
-            </div>
-
-            <h2 class="section-title text-center">Leadership Team</h2>
-            <div class="team-carousel">
-                <div class="team-members">
-                    <div class="team-member">
-                        <div class="member-image">
-                            <i class="fas fa-user"></i>
-                            <div class="member-info">
-                                <h4>Dr. Sarah Johnson</h4>
-                                <p>Founder & CEO</p>
-                            </div>
+                    <div class="event-content">
+                        <div class="event-time">
+                            <i class="far fa-clock"></i> 9:00 AM - 5:00 PM
                         </div>
-                        <h3>Dr. Sarah Johnson</h3>
-                        <p>Founder & CEO</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-image">
-                            <i class="fas fa-user"></i>
-                            <div class="member-info">
-                                <h4>Michael Chen</h4>
-                                <p>Academic Director</p>
-                            </div>
+                        <h3 class="event-title">Parents Orientation Program</h3>
+                        <div class="event-location">
+                            <i class="fas fa-map-marker-alt"></i> Conference Center
                         </div>
-                        <h3>Michael Chen</h3>
-                        <p>Academic Director</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-image">
-                            <i class="fas fa-user"></i>
-                            <div class="member-info">
-                                <h4>Priya Patel</h4>
-                                <p>STEM Program Lead</p>
-                            </div>
-                        </div>
-                        <h3>Priya Patel</h3>
-                        <p>STEM Program Lead</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-image">
-                            <i class="fas fa-user"></i>
-                            <div class="member-info">
-                                <h4>David Wilson</h4>
-                                <p>Operations Manager</p>
-                            </div>
-                        </div>
-                        <h3>David Wilson</h3>
-                        <p>Operations Manager</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-image">
-                            <i class="fas fa-user"></i>
-                            <div class="member-info">
-                                <h4>Emma Rodriguez</h4>
-                                <p>Student Success</p>
-                            </div>
-                        </div>
-                        <h3>Emma Rodriguez</h3>
-                        <p>Student Success</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="section-title text-center">Press & Media</h2>
-            <div class="media-logos">
-                <div class="media-logo">EduTimes</div>
-                <div class="media-logo">Global Ed</div>
-                <div class="media-logo">TeachMag</div>
-                <div class="media-logo">FutureLearn</div>
-                <div class="media-logo">ScholarPress</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Us Page -->
-    <section id="contact" class="page">
-        <div class="contact-hero">
-            <div class="map-overlay">
-                <h1>Get in Touch</h1>
-                <p>We'd love to hear from you. Reach out for inquiries, partnerships, or just to say hello!</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="contact-details">
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h3>Address</h3>
-                    <p>123 Education Street<br>Learning City, LC 12345</p>
-                    <a href="#" class="btn btn-outline">Get Directions</a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <h3>Phone</h3>
-                    <p>(555) 123-4567<br>(555) 765-4321</p>
-                    <a href="#" class="btn btn-outline">Call Now</a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <h3>Email</h3>
-                    <p>info@educonnect.com<br>support@educonnect.com</p>
-                    <a href="#" class="btn btn-outline">Email Us</a>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h2 class="section-title text-center">Send Us a Message</h2>
-                <form>
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder=" ">
-                        <label for="name">Your Name</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder=" ">
-                        <label for="email">Email Address</label>
-                    </div>
-                    <div class="form-group">
-                        <select id="subject">
-                            <option value="" disabled selected>Select a subject</option>
-                            <option>General Inquiry</option>
-                            <option>Admissions</option>
-                            <option>Program Information</option>
-                            <option>Technical Support</option>
-                            <option>Feedback</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" placeholder=" "></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
-                    <button type="submit" class="btn btn-accent">Send Message</button>
-                </form>
-            </div>
-
-            <div class="office-tabs">
-                <h2 class="section-title">Office Hours & Locations</h2>
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="main">Main Campus</button>
-                    <button class="tab-btn" data-tab="north">North Campus</button>
-                    <button class="tab-btn" data-tab="west">West Campus</button>
-                </div>
-                <div class="tab-content">
-                    <div id="main" class="tab-pane active">
-                        <h3>Main Campus</h3>
-                        <p>123 Education Street, Learning City, LC 12345</p>
-                        <p><strong>Hours:</strong> Mon-Fri: 8:00 AM - 8:00 PM, Sat: 9:00 AM - 5:00 PM, Sun: Closed</p>
-                        <p><strong>Phone:</strong> (555) 123-4567</p>
-                        <p><strong>Email:</strong> main@educonnect.com</p>
-                        <a href="#" class="btn btn-outline">View on Map</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="social-newsletter">
-                <div>
-                    <h3>Connect With Us</h3>
-                    <p>Follow us on social media for the latest updates and educational content.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h3>Stay Updated</h3>
-                    <p>Subscribe to our newsletter for monthly insights and announcements.</p>
-                    <div class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Your email address">
-                        <button class="btn">Subscribe</button>
+                        <p class="event-description">Understanding our teaching methodology and how parents can support
+                            learning at home.</p>
+                        <a href="#" class="btn btn-accent">Register Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (from reference) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-container">
@@ -463,13 +1040,12 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Courses</a></li>
-                        <li><a href="#">Counselling</a></li>
-                        <li><a href="#">Announcements</a></li>
-                        <li><a href="#">Career</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="class.html">Classes</a></li>
+                        <li><a href="counselling.html">Counselling</a></li>
+                        <li><a href="announcements.html">Announcements</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -488,7 +1064,7 @@
                     <ul class="footer-links">
                         <li><i class="fas fa-clock"></i> Mon-Fri: 8am - 8pm</li>
                         <li><i class="fas fa-clock"></i> Sat: 9am - 5pm</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
                         <li><i class="fas fa-envelope"></i> info@educonnect.com</li>
                         <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</li>
                     </ul>
@@ -520,135 +1096,64 @@
     </div>
 
     <script>
-        // Mobile menu toggle (keep this part)
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileCloseBtn = document.querySelector('.mobile-close-btn');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ?
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileCloseBtn.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
         });
 
-        // Header scroll effect (keep this part)
-        const header = document.querySelector('header');
+        // Header scroll effect
         window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            const backToTop = document.querySelector('.back-to-top');
+
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
 
-        // =============================================
-        // SPA NAV ONLY FOR ANNOUNCEMENTS / ABOUT / CONTACT
-        // =============================================
-        (function () {
-            const inPage = ['announcements', 'about', 'contact'];
-
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                const href = link.getAttribute('href').split('/').pop();
-                const name = href.replace('.html', '');
-
-                if (!inPage.includes(name)) return;
-
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    // deactivate all pages & nav links
-                    document.querySelectorAll('.page, .nav-links a').forEach(el => el.classList.remove('active'));
-
-                    // activate this link + its section
-                    this.classList.add('active');
-                    document.getElementById(name).classList.add('active');
-
-                    // update URL without reload
-                    history.pushState(null, '', href);
-
-                    // scroll up nicely
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            });
-
-            // support browser back/forward
-            window.addEventListener('popstate', () => {
-                const path = window.location.pathname.split('/').pop() || 'announcements.html';
-                const name = path.replace('.html', '');
-
-                if (!inPage.includes(name)) return;
-
-                document.querySelectorAll('.page, .nav-links a').forEach(el => el.classList.remove('active'));
-                document.getElementById(name).classList.add('active');
-                document.querySelector(`.nav-links a[href="${path}"]`)?.classList.add('active');
-            });
-        })();
-
-        // Tab functionality (keep this part)
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const tabId = this.dataset.tab;
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-                document.getElementById(tabId).classList.add('active');
+        // Back to top button
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
 
-        // Tag filtering (keep this part)
-        document.querySelectorAll('.tag').forEach(tag => {
-            tag.addEventListener('click', function () {
-                document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => this.style.transform = 'scale(1)', 300);
+        // Announcement card hover effect
+        document.querySelectorAll('.announcement-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.querySelector('.read-more i').style.transform = 'translateX(5px)';
             });
-        });
 
-        // Envelope animation (keep this part)
-        const emailInput = document.querySelector('.email-input input');
-        if (emailInput) {
-            emailInput.addEventListener('focus', () => {
-                document.querySelector('.envelope-icon').style.transform = 'translateY(-50%) rotate(-20deg)';
-            });
-            emailInput.addEventListener('blur', () => {
-                if (!emailInput.value) {
-                    document.querySelector('.envelope-icon').style.transform = 'translateY(-50%)';
-                }
-            });
-        }
-
-        // Back to top button (keep this part)
-        const backToTopBtn = document.querySelector('.back-to-top');
-        if (backToTopBtn) {
-            window.addEventListener('scroll', () => {
-                backToTopBtn.classList.toggle('visible', window.pageYOffset > 300);
-            });
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // Scroll animations (keep this part)
-        const animateOnScroll = () => {
-            document.querySelectorAll('.timeline-item, .value-card').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                    el.classList.add('visible');
-                }
-            });
-        };
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
-
-        // Form submission handling (keep this part)
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
+            card.addEventListener('mouseleave', function () {
+                this.querySelector('.read-more i').style.transform = 'translateX(0)';
             });
         });
     </script>
-
 </body>
 
 </html>
