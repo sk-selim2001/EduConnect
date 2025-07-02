@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Contact Us</title>
+    <title>Contact Us - EduConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./styles/contact-us.css"> -->
     <style>
         :root {
             --primary: #2c3e50;
@@ -171,6 +170,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
         }
 
         .logo {
@@ -180,6 +180,7 @@
             color: var(--primary);
             text-decoration: none;
             transition: transform 0.3s ease;
+            z-index: 1001;
         }
 
         .logo span {
@@ -270,41 +271,55 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.8rem;
             color: var(--primary);
+            font-size: 1.8rem;
             cursor: pointer;
             z-index: 1001;
+            padding: 10px;
+            transition: var(--transition);
         }
 
-        .mobile-menu-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: var(--primary);
-            cursor: pointer;
-            z-index: 1001;
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
         }
 
-        .mobile-nav {
+        .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
             width: 80%;
-            max-width: 400px;
+            max-width: 350px;
             height: 100vh;
             background: var(--white);
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
+            transition: right 0.3s ease-in-out;
             z-index: 1000;
-            overflow-y: auto;
             padding: 80px 30px 30px;
+            overflow-y: auto;
         }
 
-        .mobile-nav.active {
+        .mobile-menu.active {
             right: 0;
+        }
+
+        .mobile-menu-header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .mobile-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-close-btn:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
         }
 
         .mobile-nav-links {
@@ -321,18 +336,47 @@
             text-decoration: none;
             font-size: 1.2rem;
             font-weight: 600;
-            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+            transition: var(--transition);
         }
 
         .mobile-nav-links a:hover {
             color: var(--secondary);
+            transform: translateX(5px);
         }
 
         .mobile-nav-links .active {
             color: var(--secondary);
         }
 
-        .mobile-nav-overlay {
+        .mobile-social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .mobile-social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            color: var(--primary);
+            margin: 0 10px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .mobile-social-icons a:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -342,351 +386,227 @@
             z-index: 999;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .mobile-nav-overlay.active {
+        .overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        /* Contact Page Specific Styles */
+        /* Contact Section */
         .contact-hero {
-            height: 500px;
-            position: relative;
-            border-radius: 0 0 var(--radius) var(--radius);
-            margin-bottom: 60px;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-
-        #map {
-            width: 100%;
-            height: 100%;
-            background: #e9ecef;
-        }
-
-        .map-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(44, 62, 80, 0.8);
-            color: white;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 180px 0 100px;
             text-align: center;
         }
 
-        .map-pin {
-            position: absolute;
-            top: 38%;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            font-size: 40px;
-            color: var(--accent);
-            animation: pulse 2s infinite;
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -100%) scale(1);
-            }
-
-            50% {
-                transform: translate(-50%, -100%) scale(1.2);
-            }
-
-            100% {
-                transform: translate(-50%, -100%) scale(1);
-            }
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
 
-        /* Contact Details */
-        .contact-details {
-            display: flex;
-            justify-content: center;
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 40px;
-            margin: 60px 0;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            text-align: center;
-            padding: 30px;
-            background: white;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            width: 250px;
-            transition: all 0.3s ease;
+            margin-top: -50px;
             position: relative;
-            overflow: hidden;
             z-index: 1;
         }
 
-        .contact-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--secondary);
-            z-index: -1;
-            clip-path: circle(0% at 50% 50%);
-            transition: clip-path 0.5s ease;
+        .contact-info {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
         }
 
-        .contact-item:hover::before {
-            clip-path: circle(100% at 50% 50%);
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
         }
 
-        .contact-item:hover {
-            transform: translateY(-10px);
-            color: white;
-        }
-
-        .contact-item:hover .contact-icon {
-            background: white;
+        .contact-info h3 {
             color: var(--secondary);
+            margin-bottom: 30px;
         }
 
-        .contact-item:hover h3,
-        .contact-item:hover p {
-            color: white;
+        .contact-item {
+            display: flex;
+            margin-bottom: 30px;
         }
 
         .contact-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: var(--neutral-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 28px;
+            margin-right: 20px;
             color: var(--secondary);
-            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        .contact-item h3 {
-            margin-bottom: 15px;
-            transition: color 0.3s;
+        .contact-details h4 {
+            margin-bottom: 5px;
         }
 
-        .contact-item p {
+        .contact-details p {
             color: var(--neutral-dark);
-            transition: color 0.3s;
+            margin-bottom: 0;
         }
 
-        /* Contact Form */
-        .contact-form {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 50px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+        .contact-details a {
+            color: var(--neutral-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--secondary);
+        }
+
+        .social-contact {
+            display: flex;
+            margin-top: 40px;
+        }
+
+        .social-contact a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            color: var(--primary);
+            margin-right: 15px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-contact a:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-3px);
         }
 
         .form-group {
-            margin-bottom: 30px;
-            position: relative;
+            margin-bottom: 25px;
         }
 
         .form-group label {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: var(--neutral-dark);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-control {
             width: 100%;
-            padding: 20px;
-            border: 2px solid var(--neutral-light);
-            border-radius: var(--radius);
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-family: "Open Sans", sans-serif;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: transparent;
+            font-size: 1rem;
+            transition: border 0.3s ease;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--secondary);
+        .form-control:focus {
             outline: none;
+            border-color: var(--secondary);
         }
 
-        .form-group input:focus+label,
-        .form-group textarea:focus+label,
-        .form-group input:not(:placeholder-shown)+label,
-        .form-group textarea:not(:placeholder-shown)+label {
-            top: -12px;
-            left: 15px;
-            background: white;
-            padding: 0 10px;
-            font-size: 14px;
-            color: var(--secondary);
-        }
-
-        .form-group textarea {
+        textarea.form-control {
             min-height: 150px;
             resize: vertical;
         }
 
-        /* Office Hours & Locations */
-        .office-tabs {
-            margin: 60px 0;
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
         }
 
-        .tab-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+        .map-container {
+            margin-top: 80px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
-        .tab-btn {
-            padding: 15px 30px;
-            background: var(--neutral-light);
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
             border: none;
-            border-radius: var(--radius) var(--radius) 0 0;
-            font-family: "Poppins", sans-serif;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--neutral-light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: var(--white);
+            color: var(--primary);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active {
-            background: var(--secondary);
-            color: white;
-        }
-
-        .tab-content {
-            background: white;
-            border-radius: 0 var(--radius) var(--radius) var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .branch-info {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .branch-details {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .branch-map {
-            flex: 1;
-            min-width: 300px;
-            height: 300px;
-            background: var(--neutral-light);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--neutral-dark);
-        }
-
-        /* Social & Newsletter */
-        .social-newsletter {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
             background: var(--neutral-light);
-            border-radius: var(--radius);
-            padding: 50px;
-            margin-top: 60px;
         }
 
-        .social-icons {
-            display: flex;
-            gap: 20px;
+        .faq-question i {
+            transition: transform 0.3s ease;
         }
 
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--primary);
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
 
-        .social-icon:hover {
-            transform: rotate(15deg) scale(1.1);
-            color: var(--secondary);
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
         }
 
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-input {
-            padding: 15px 20px;
-            border: 2px solid #ddd;
-            border-radius: var(--radius);
-            font-family: "Open Sans", sans-serif;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input:focus {
-            border-color: var(--secondary);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(24, 188, 156, 0.3);
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(24, 188, 156, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(24, 188, 156, 0);
-            }
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
         }
 
         /* Footer */
@@ -844,27 +764,18 @@
             transform: translateY(-5px);
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Responsive */
         @media (max-width: 1200px) {
             .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .nav-links {
                 display: none;
             }
@@ -873,16 +784,16 @@
                 display: block;
             }
 
-            .branch-info {
-                flex-direction: column;
+            .nav-actions .social-icons {
+                display: none;
             }
 
-            .branch-map {
-                height: 250px;
+            .contact-container {
+                grid-template-columns: 1fr;
             }
 
-            .contact-form {
-                padding: 30px;
+            .contact-hero {
+                padding: 150px 0 80px;
             }
         }
 
@@ -899,17 +810,17 @@
                 padding: 60px 0;
             }
 
-            .contact-details {
-                gap: 20px;
+            .contact-hero h1 {
+                font-size: 2.5rem;
             }
 
-            .social-newsletter {
-                flex-direction: column;
-                text-align: center;
+            .contact-hero {
+                padding: 130px 0 60px;
             }
 
-            .social-icons {
-                justify-content: center;
+            .contact-info,
+            .contact-form {
+                padding: 30px;
             }
 
             .footer-container {
@@ -921,22 +832,6 @@
                 gap: 20px;
                 text-align: center;
             }
-
-            .tab-buttons {
-                flex-direction: column;
-            }
-
-            .tab-btn {
-                border-radius: var(--radius);
-            }
-
-            .tab-content {
-                border-radius: 0 0 var(--radius) var(--radius);
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
         }
 
         @media (max-width: 576px) {
@@ -944,13 +839,12 @@
                 font-size: 2.2rem;
             }
 
-            .contact-hero {
-                height: 400px;
-                margin-top: 70px;
+            .contact-hero h1 {
+                font-size: 2rem;
             }
 
-            .contact-item {
-                width: 100%;
+            .contact-hero p {
+                font-size: 1rem;
             }
 
             .btn {
@@ -961,58 +855,27 @@
                 font-size: 1.8rem;
             }
 
-            .contact-form {
-                padding: 20px;
-            }
-
-            .form-group input,
-            .form-group textarea,
-            .form-group select {
-                padding: 15px;
-            }
-
-            .form-group label {
-                top: 15px;
-                left: 15px;
-            }
-
-            .form-group input:focus+label,
-            .form-group textarea:focus+label,
-            .form-group input:not(:placeholder-shown)+label,
-            .form-group textarea:not(:placeholder-shown)+label {
-                top: -10px;
-                left: 10px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .mobile-nav {
-                width: 90%;
-            }
-
-            .contact-hero {
-                height: 350px;
-            }
-
-            .map-pin {
-                font-size: 30px;
+            .contact-item {
+                flex-direction: column;
             }
 
             .contact-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
+                margin-bottom: 15px;
             }
 
-            .social-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .contact-hero h1 {
+                font-size: 1.8rem;
             }
 
-            .newsletter-input {
-                padding: 12px 15px;
+            .contact-info,
+            .contact-form {
+                padding: 20px;
             }
         }
     </style>
@@ -1039,20 +902,22 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                    <!-- <button class="btn">Enroll Now</button> -->
                 </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-    <div class="mobile-nav" id="mobileNav">
-        <button class="mobile-menu-close" id="mobileMenuClose">
-            <i class="fas fa-times"></i>
-        </button>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="mobile-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         <ul class="mobile-nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="class.html">Classes</a></li>
@@ -1062,176 +927,193 @@
             <li><a href="about-us.html">About Us</a></li>
             <li><a href="contact-us.html" class="active">Contact Us</a></li>
         </ul>
-        <div class="social-icons">
+        <div class="mobile-social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
+    <div class="overlay"></div>
 
-    <!-- Contact Us Page Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="contact-hero">
-            <div id="map"></div>
-            <div class="map-overlay">
-                <div>
-                    <h1>Get in Touch</h1>
-                    <p>We'd love to hear from you. Reach out to us with any questions or inquiries.</p>
-                </div>
-            </div>
-            <div class="map-pin">
-                <i class="fas fa-map-marker-alt"></i>
-            </div>
-        </section>
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Have questions about our tutoring services, classes, or career guidance? We're here to help! Reach out to
+                our team for personalized support.</p>
+            <a href="#contact-form" class="btn btn-accent">Send Us a Message</a>
+        </div>
+    </section>
 
-        <!-- Contact Details -->
-        <section>
-            <div class="container">
-                <div class="contact-details">
+    <!-- Contact Content -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <h3>Address</h3>
-                        <p>123 Education Street<br>Learning City, LC 12345</p>
+                        <div class="contact-details">
+                            <h4>Our Location</h4>
+                            <p>123 Education Street, Learning City, Mumbai 400001, India</p>
+                        </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone-alt"></i>
                         </div>
-                        <h3>Phone</h3>
-                        <p>(555) 123-4567<br>(555) 765-4321</p>
+                        <div class="contact-details">
+                            <h4>Phone Numbers</h4>
+                            <p><a href="tel:+911234567890">+91 12345 67890</a> (Office)</p>
+                            <p><a href="tel:+919876543210">+91 98765 43210</a> (Support)</p>
+                        </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <h3>Email</h3>
-                        <p>info@educonnect.com<br>support@educonnect.com</p>
+                        <div class="contact-details">
+                            <h4>Email Addresses</h4>
+                            <p><a href="mailto:info@educonnect.com">info@educonnect.com</a></p>
+                            <p><a href="mailto:support@educonnect.com">support@educonnect.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Working Hours</h4>
+                            <p>Monday - Friday: 8:00 AM - 8:00 PM</p>
+                            <p>Saturday: 9:00 AM - 5:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+                    <div class="social-contact">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h2 class="text-center">Send Us a Message</h2>
+                <div class="contact-form" id="contact-form">
+                    <h3>Send Us a Message</h3>
                     <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder=" " required>
-                            <label for="name">Your Name</label>
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" placeholder=" " required>
                             <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
-                            <select id="subject" required>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" class="form-control" required>
                                 <option value="" disabled selected>Select a subject</option>
-                                <option>General Inquiry</option>
-                                <option>Admissions</option>
-                                <option>Program Information</option>
-                                <option>Technical Support</option>
-                                <option>Feedback</option>
+                                <option value="tutoring">Private Tutoring</option>
+                                <option value="classes">Group Classes</option>
+                                <option value="counselling">Career Counselling</option>
+                                <option value="admission">Admission Guidance</option>
+                                <option value="other">Other Inquiry</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" placeholder=" " required></textarea>
                             <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" placeholder="Type your message here..."
+                                required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-accent">Send Message</button>
+                        <button type="submit" class="btn submit-btn">Send Message</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Office Hours & Locations -->
-                <div class="office-tabs">
-                    <h2>Office Hours & Locations</h2>
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" data-tab="main">Main Campus</button>
-                        <button class="tab-btn" data-tab="north">North Campus</button>
-                        <button class="tab-btn" data-tab="west">West Campus</button>
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.264715827343!2d72.82151431490094!3d19.05598868710172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8dfb0c0d9cd%3A0x4167d8c941693a29!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions about our services</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I find the right tutor for my child?</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div id="main" class="tab-content active">
-                        <div class="branch-info">
-                            <div class="branch-details">
-                                <h3>Main Campus</h3>
-                                <p>123 Education Street, Learning City, LC 12345</p>
-                                <p><strong>Hours:</strong><br>
-                                    Mon-Fri: 8:00 AM - 8:00 PM<br>
-                                    Sat: 9:00 AM - 5:00 PM<br>
-                                    Sun: Closed</p>
-                                <p><strong>Phone:</strong> (555) 123-4567</p>
-                                <p><strong>Email:</strong> main@educonnect.com</p>
-                            </div>
-                            <div class="branch-map">
-                                <i class="fas fa-map-marked-alt"
-                                    style="font-size: 48px; margin-bottom: 15px; margin-right: 10px;"></i>
-                                <p>Main Campus Location</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="north" class="tab-content">
-                        <div class="branch-info">
-                            <div class="branch-details">
-                                <h3>North Campus</h3>
-                                <p>456 Learning Avenue, North City, NC 67890</p>
-                                <p><strong>Hours:</strong><br>
-                                    Mon-Thu: 9:00 AM - 7:00 PM<br>
-                                    Fri: 9:00 AM - 6:00 PM<br>
-                                    Sat: 10:00 AM - 4:00 PM<br>
-                                    Sun: Closed</p>
-                                <p><strong>Phone:</strong> (555) 234-5678</p>
-                                <p><strong>Email:</strong> north@educonnect.com</p>
-                            </div>
-                            <div class="branch-map">
-                                <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
-                                <p>North Campus Location</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="west" class="tab-content">
-                        <div class="branch-info">
-                            <div class="branch-details">
-                                <h3>West Campus</h3>
-                                <p>789 Knowledge Road, West Town, WT 13579</p>
-                                <p><strong>Hours:</strong><br>
-                                    Mon-Fri: 10:00 AM - 6:00 PM<br>
-                                    Sat: 10:00 AM - 3:00 PM<br>
-                                    Sun: Closed</p>
-                                <p><strong>Phone:</strong> (555) 345-6789</p>
-                                <p><strong>Email:</strong> west@educonnect.com</p>
-                            </div>
-                            <div class="branch-map">
-                                <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
-                                <p>West Campus Location</p>
-                            </div>
-                        </div>
+                    <div class="faq-answer">
+                        <p>We carefully match students with tutors based on their academic needs, learning style, and
+                            personality. After you contact us, our academic advisor will schedule a consultation to
+                            understand your requirements and recommend the best tutor from our qualified team.</p>
                     </div>
                 </div>
-
-                <!-- Social & Newsletter -->
-                <div class="social-newsletter">
-                    <div>
-                        <h3>Connect With Us</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                        </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What subjects and grade levels do you cover?</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div>
-                        <h3>Stay Updated</h3>
-                        <p>Subscribe to our newsletter for the latest news and updates</p>
-                        <form class="newsletter-form">
-                            <input type="email" class="newsletter-input" placeholder="Your email address" required>
-                            <button class="btn">Subscribe</button>
-                        </form>
+                    <div class="faq-answer">
+                        <p>We offer tutoring for all core subjects (Math, Science, English, Social Studies) from Grade 1
+                            through 12, plus specialized coaching for competitive exams like JEE, NEET, and board exams.
+                            We also provide college-level tutoring for select subjects.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer online tutoring options?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer both in-person and online tutoring through our secure virtual classroom
+                            platform. Online sessions include interactive whiteboards, file sharing, and session
+                            recording features to enhance the learning experience.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What are your fees and payment options?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our fees vary based on the tutor's qualifications, subject, and session duration. We offer
+                            competitive rates with package discounts available. Payment can be made via credit/debit
+                            cards, UPI, net banking, or cash. Contact us for detailed pricing information.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I schedule or reschedule a session?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sessions can be scheduled through our online portal, mobile app, or by calling our support
+                            team. We require 24 hours notice for rescheduling to avoid cancellation fees. Emergency
+                            cancellations are considered on a case-by-case basis.</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -1254,7 +1136,6 @@
                         <li><a href="class.html">Classes</a></li>
                         <li><a href="counselling.html">Counselling</a></li>
                         <li><a href="announcements.html">Announcements</a></li>
-                        <!-- <li><a href="#">Career</a></li> -->
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="contact-us.html">Contact</a></li>
                     </ul>
@@ -1275,9 +1156,9 @@
                     <ul class="footer-links">
                         <li><i class="fas fa-clock"></i> Mon-Fri: 8am - 8pm</li>
                         <li><i class="fas fa-clock"></i> Sat: 9am - 5pm</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-phone"></i> +91 12345 67890</li>
                         <li><i class="fas fa-envelope"></i> info@educonnect.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Mumbai</li>
                     </ul>
                 </div>
             </div>
@@ -1307,6 +1188,27 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileCloseBtn.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
         // Header scroll effect
         window.addEventListener('scroll', function () {
             const header = document.querySelector('header');
@@ -1325,55 +1227,44 @@
             }
         });
 
-        // Tab functionality
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                // Remove active class from all buttons
-                document.querySelectorAll('.tab-btn').forEach(b => {
-                    b.classList.remove('active');
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
                 });
 
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                // Hide all tab content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-
-                // Show selected tab content
-                const tabId = this.dataset.tab;
-                document.getElementById(tabId).classList.add('active');
+                // Toggle current item
+                item.classList.toggle('active');
             });
         });
 
-        // Contact form validation and submission
+        // Contact Form Submission
         const contactForm = document.getElementById('contactForm');
+
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Simple validation
+            // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
 
-            if (name && email && subject && message) {
-                // Form submission logic would go here
-                alert('Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
+            // Here you would typically send the data to your server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been received. We'll contact you soon at ${email} or ${phone}.`);
 
-                // Reset floating labels
-                document.querySelectorAll('.form-group label').forEach(label => {
-                    label.style.top = '20px';
-                    label.style.left = '20px';
-                    label.style.fontSize = '16px';
-                    label.style.background = 'transparent';
-                    label.style.color = 'var(--neutral-dark)';
-                });
-            } else {
-                alert('Please fill in all fields');
-            }
+            // Reset the form
+            contactForm.reset();
         });
 
         // Back to top button
@@ -1381,87 +1272,6 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-            });
-        });
-
-        // Simple map implementation
-        function initMap() {
-            // In a real implementation, this would initialize Google Maps
-            // For this demo, we'll just simulate with CSS
-            const mapElement = document.getElementById('map');
-            mapElement.innerHTML = `
-                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#e9ecef;">
-                    <div style="text-align:center;color:var(--neutral-dark);">
-                        <i class="fas fa-map" style="font-size:60px;margin-bottom:20px;"></i>
-                        <h3>Interactive Map</h3>
-                        <p>Location: 123 Education Street, Learning City</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Initialize the map on page load
-        window.addEventListener('load', initMap);
-
-        // Newsletter input animation
-        const newsletterInput = document.querySelector('.newsletter-input');
-        newsletterInput.addEventListener('focus', function () {
-            if (!this.value) {
-                this.style.animation = 'pulse 1.5s infinite';
-            }
-        });
-
-        newsletterInput.addEventListener('blur', function () {
-            this.style.animation = 'none';
-        });
-
-        // Scroll animations
-        function checkScroll() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('appear');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
-
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        const mobileNav = document.getElementById('mobileNav');
-        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileNav.classList.add('active');
-            mobileNavOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        mobileMenuClose.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            mobileNavOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        mobileNavOverlay.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            mobileNavOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                mobileNavOverlay.classList.remove('active');
-                document.body.style.overflow = '';
             });
         });
     </script>
