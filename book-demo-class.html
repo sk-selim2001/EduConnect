@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guidance & Counselling - EduConnect</title>
+    <title>Book Demo Class - EduConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
@@ -394,9 +394,9 @@
             visibility: visible;
         }
 
-        /* Counselling Hero */
-        .counselling-hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80');
+        /* Demo Class Hero */
+        .demo-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: var(--white);
@@ -404,12 +404,12 @@
             text-align: center;
         }
 
-        .counselling-hero h1 {
+        .demo-hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
         }
 
-        .counselling-hero p {
+        .demo-hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 30px;
@@ -429,93 +429,146 @@
             box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
         }
 
-        /* Counselling Services */
-        .counselling-services {
+        /* Demo Class Form */
+        .demo-form-section {
             background: var(--neutral-light);
         }
 
-        .services-grid {
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(24, 188, 156, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232c3e50' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Subjects Offered */
+        .subjects-section {
+            background: var(--white);
+        }
+
+        .subjects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        .service-card {
+        .subject-card {
+            background: var(--neutral-light);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .subject-card:hover h3,
+        .subject-card:hover p {
+            color: var(--white);
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .subject-card:hover .subject-icon {
+            color: var(--white);
+        }
+
+        .subject-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .subject-card p {
+            color: var(--neutral-dark);
+        }
+
+        /* Why Choose Us */
+        .why-choose-section {
+            background: var(--neutral-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            display: flex;
+            gap: 20px;
             background: var(--white);
             border-radius: var(--radius);
-            overflow: hidden;
+            padding: 30px;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
+        .feature-card:hover {
+            transform: translateY(-5px);
         }
 
-        .service-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-
-        .service-content {
-            padding: 30px;
-        }
-
-        .service-content h3 {
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .service-content ul {
-            margin: 20px 0;
-            padding-left: 20px;
-        }
-
-        .service-content ul li {
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .service-content ul li:before {
-            content: "•";
-            color: var(--secondary);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            background: var(--white);
-        }
-
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .step {
-            flex: 0 0 calc(25% - 30px);
-            text-align: center;
-            position: relative;
-            padding: 0 15px;
-        }
-
-        .step-number {
+        .feature-icon {
+            flex-shrink: 0;
             width: 60px;
             height: 60px;
             background: var(--secondary);
@@ -525,99 +578,11 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            position: relative;
-            z-index: 1;
         }
 
-        .step:not(:last-child):after {
-            content: "";
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            width: 100%;
-            height: 2px;
-            background: var(--secondary);
-            z-index: 0;
-        }
-
-        .step h3 {
-            margin-bottom: 15px;
-        }
-
-        /* Counsellors */
-        .counsellors-section {
-            background: var(--neutral-light);
-        }
-
-        .counsellors-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .counsellor-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .counsellor-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .counsellor-img {
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .counsellor-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .counsellor-info {
-            padding: 25px;
-        }
-
-        .counsellor-info h3 {
-            margin-bottom: 5px;
-        }
-
-        .counsellor-info p.specialization {
+        .feature-content h3 {
+            margin-bottom: 10px;
             color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .counsellor-social {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .counsellor-social a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--neutral-light);
-            color: var(--primary);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .counsellor-social a:hover {
-            background: var(--secondary);
-            color: var(--white);
         }
 
         /* Testimonials */
@@ -864,12 +829,8 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .services-grid {
+            .subjects-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .counsellors-grid {
-                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -890,30 +851,8 @@
                 display: none;
             }
 
-            .steps-container {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .step {
-                flex: 0 0 100%;
-                display: flex;
-                text-align: left;
-                align-items: center;
-                gap: 20px;
-            }
-
-            .step-number {
-                margin: 0;
-                flex-shrink: 0;
-            }
-
-            .step:not(:last-child):after {
-                display: none;
-            }
-
-            .step-content {
-                text-align: left;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -930,20 +869,25 @@
                 padding: 60px 0;
             }
 
-            .counselling-hero h1 {
+            .demo-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .counselling-hero {
+            .demo-hero {
                 padding: 150px 0 80px;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .form-container {
+                padding: 30px;
             }
 
-            .counsellors-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
             }
 
             .footer-container {
@@ -962,11 +906,11 @@
                 font-size: 2.2rem;
             }
 
-            .counselling-hero h1 {
+            .demo-hero h1 {
                 font-size: 2rem;
             }
 
-            .counselling-hero p {
+            .demo-hero p {
                 font-size: 1rem;
             }
 
@@ -977,24 +921,10 @@
             .section-title h2 {
                 font-size: 1.8rem;
             }
-
-            .counsellors-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .step {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-
-            .step-content {
-                text-align: center;
-            }
         }
 
         @media (max-width: 400px) {
-            .counselling-hero h1 {
+            .demo-hero h1 {
                 font-size: 1.8rem;
             }
         }
@@ -1010,7 +940,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="class.html">Classes</a></li>
-                    <li><a href="counselling.html" class="active">Guidance & Counselling</a></li>
+                    <li><a href="counselling.html">Guidance & Counselling</a></li>
                     <li><a href="announcements.html">Announcements</a></li>
                     <!-- <li><a href="#">Career</a></li> -->
                     <li><a href="about-us.html">About Us</a></li>
@@ -1041,7 +971,7 @@
         <ul class="mobile-nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="class.html">Classes</a></li>
-            <li><a href="counselling.html" class="active">Guidance & Counselling</a></li>
+            <li><a href="counselling.html">Guidance & Counselling</a></li>
             <li><a href="announcements.html">Announcements</a></li>
             <!-- <li><a href="#">Career</a></li> -->
             <li><a href="about-us.html">About Us</a></li>
@@ -1055,228 +985,216 @@
     </div>
     <div class="overlay"></div>
 
-    <!-- Counselling Hero Section -->
-    <section class="counselling-hero">
+    <!-- Demo Class Hero Section -->
+    <section class="demo-hero">
         <div class="container">
-            <!-- <div class="free-badge">Free Service</div> -->
-            <h1>Expert Career Guidance & Counselling</h1>
-            <p>Get personalized career advice from our certified counsellors to make informed decisions about your
-                academic and professional future.</p>
-            <a href="book-demo-class.html" class="btn btn-accent">Book Free Session</a>
+            <!-- <div class="free-badge">Free Demo Class</div> -->
+            <h1>Book Your Free Demo Class Now!</h1>
+            <p>Book a free demo class today and discover how our expert tutors can help you achieve academic success
+                with personalized attention and proven teaching methods.</p>
+            <!-- <a href="class.html" class="btn btn-accent">Explore Our Classes</a> -->
         </div>
     </section>
 
-    <!-- Counselling Services -->
-    <section class="counselling-services">
+    <!-- Demo Class Form -->
+    <section class="demo-form-section" id="demo-form">
         <div class="container">
             <div class="section-title">
-                <h2>Our Counselling Services</h2>
-                <p>Comprehensive guidance to help you navigate your educational and career journey</p>
+                <h2>Book Your Free Demo Class</h2>
+                <p>Fill out the form below and we'll contact you to schedule your session</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=600&q=80"
-                            alt="Career Counselling">
+            <div class="form-container">
+                <form id="demoClassForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Student Name*</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent">Parent/Guardian Name</label>
+                            <input type="text" id="parent" class="form-control">
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3>Career Counselling</h3>
-                        <p>Discover your strengths and find the career path that aligns with your skills and interests.
-                        </p>
-                        <ul>
-                            <li>Career aptitude assessment</li>
-                            <li>Industry trend analysis</li>
-                            <li>Career roadmap development</li>
-                            <li>Skill gap identification</li>
-                        </ul>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address*</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number*</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
                     </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80"
-                            alt="Academic Guidance">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="grade">Grade/Class*</label>
+                            <select id="grade" class="form-control" required>
+                                <option value="">Select Grade</option>
+                                <option value="1-5">Primary (1-5)</option>
+                                <option value="6-8">Middle School (6-8)</option>
+                                <option value="9-10">Secondary (9-10)</option>
+                                <option value="11-12">Senior Secondary (11-12)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject*</label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Select Subject</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Science">Science</option>
+                                <option value="English">English</option>
+                                <option value="Social Studies">Social Studies</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Accountancy">Accountancy</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Business Studies">Business Studies</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3>Academic Guidance</h3>
-                        <p>Get expert advice on course selection, study techniques, and academic planning.</p>
-                        <ul>
-                            <li>Subject combination advice</li>
-                            <li>Study plan customization</li>
-                            <li>Learning style assessment</li>
-                            <li>Exam preparation strategies</li>
-                        </ul>
+                    <div class="form-group">
+                        <label for="preferred-time">Preferred Time for Demo*</label>
+                        <select id="preferred-time" class="form-control" required>
+                            <option value="">Select Preferred Time</option>
+                            <option value="Morning (8am-12pm)">Morning (8am-12pm)</option>
+                            <option value="Afternoon (12pm-4pm)">Afternoon (12pm-4pm)</option>
+                            <option value="Evening (4pm-8pm)">Evening (4pm-8pm)</option>
+                            <option value="Weekend">Weekend</option>
+                        </select>
                     </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
-                            alt="College Admission">
+                    <div class="form-group">
+                        <label for="message">Any Specific Topics You Want to Cover?</label>
+                        <textarea id="message" class="form-control" rows="3"></textarea>
                     </div>
-                    <div class="service-content">
-                        <h3>College Admission Guidance</h3>
-                        <p>Navigate the complex college admission process with our step-by-step support.</p>
-                        <ul>
-                            <li>College shortlisting</li>
-                            <li>Application assistance</li>
-                            <li>Entrance exam preparation</li>
-                            <li>Scholarship guidance</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
-                            alt="Personal Development">
-                    </div>
-                    <div class="service-content">
-                        <h3>Personal Development</h3>
-                        <p>Build essential life skills to succeed in academics and beyond.</p>
-                        <ul>
-                            <li>Time management training</li>
-                            <li>Stress management techniques</li>
-                            <li>Communication skills</li>
-                            <li>Leadership development</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80"
-                            alt="Competitive Exams">
-                    </div>
-                    <div class="service-content">
-                        <h3>Competitive Exam Guidance</h3>
-                        <p>Expert strategies for JEE, NEET, UPSC, and other competitive examinations.</p>
-                        <ul>
-                            <li>Exam pattern analysis</li>
-                            <li>Preparation timeline</li>
-                            <li>Resource recommendations</li>
-                            <li>Mock test strategies</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80"
-                            alt="Parent Counselling">
-                    </div>
-                    <div class="service-content">
-                        <h3>Parent Counselling</h3>
-                        <p>Guidance for parents to effectively support their child's educational journey.</p>
-                        <ul>
-                            <li>Understanding child's potential</li>
-                            <li>Effective parenting strategies</li>
-                            <li>Academic pressure management</li>
-                            <li>Career discussion facilitation</li>
-                        </ul>
-                    </div>
-                </div>
+                    <button type="submit" class="btn submit-btn">Submit Request</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
+    <!-- Subjects Offered -->
+    <section class="subjects-section">
         <div class="container">
             <div class="section-title">
-                <h2>How Our Free Counselling Works</h2>
-                <p>Simple steps to get personalized career guidance from our experts</p>
+                <h2>Subjects We Cover</h2>
+                <p>Comprehensive tutoring across all major subjects and competitive exams</p>
             </div>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Register Online</h3>
-                        <p>Fill out our simple registration form to schedule your free counselling session.</p>
+            <div class="subjects-grid">
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-square-root-alt"></i>
                     </div>
+                    <h3>Mathematics</h3>
+                    <p>From basic arithmetic to advanced calculus, we make math easy to understand.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Initial Assessment</h3>
-                        <p>Complete our online assessment to help us understand your interests and skills.</p>
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-flask"></i>
                     </div>
+                    <h3>Science</h3>
+                    <p>Physics, Chemistry, Biology - hands-on learning for better understanding.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Session Scheduling</h3>
-                        <p>Choose a convenient time for your one-on-one counselling session.</p>
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-language"></i>
                     </div>
+                    <h3>Languages</h3>
+                    <p>English, Hindi, and regional languages with focus on communication skills.</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Get Guidance</h3>
-                        <p>Attend your session and receive personalized career advice and roadmap.</p>
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-laptop-code"></i>
                     </div>
+                    <h3>Computer Science</h3>
+                    <p>Coding, programming, and computer fundamentals for all levels.</p>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Social Studies</h3>
+                    <p>History, Geography, Civics made interesting with real-world connections.</p>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Commerce</h3>
+                    <p>Accountancy, Economics, Business Studies for commerce students.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Counsellors Section -->
-    <section class="counsellors-section">
+    <!-- Why Choose Us -->
+    <section class="why-choose-section">
         <div class="container">
             <div class="section-title">
-                <h2>Meet Our Counsellors</h2>
-                <p>Certified professionals with extensive experience in career guidance</p>
+                <h2>Why Choose EduConnect?</h2>
+                <p>What makes our tutoring services stand out from the rest</p>
             </div>
-            <div class="counsellors-grid">
-                <div class="counsellor-card">
-                    <div class="counsellor-img">
-                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Dr. Priya Sharma">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
                     </div>
-                    <div class="counsellor-info">
-                        <h3>Dr. Priya Sharma</h3>
-                        <p class="specialization">Career Psychologist</p>
-                        <p>12+ years experience in career assessment and guidance</p>
-                        <div class="counsellor-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
+                    <div class="feature-content">
+                        <h3>Expert Tutors</h3>
+                        <p>Our tutors are highly qualified, experienced, and passionate about teaching. They undergo
+                            rigorous training and continuous professional development.</p>
                     </div>
                 </div>
-                <div class="counsellor-card">
-                    <div class="counsellor-img">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Verma">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <div class="counsellor-info">
-                        <h3>Rahul Verma</h3>
-                        <p class="specialization">Academic Advisor</p>
-                        <p>Specialized in STEM career paths and competitive exams</p>
-                        <div class="counsellor-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
+                    <div class="feature-content">
+                        <h3>Personalized Learning</h3>
+                        <p>We tailor our teaching methods to match each student's learning style, pace, and academic
+                            goals for maximum effectiveness.</p>
                     </div>
                 </div>
-                <div class="counsellor-card">
-                    <div class="counsellor-img">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Anjali Patel">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
                     </div>
-                    <div class="counsellor-info">
-                        <h3>Anjali Patel</h3>
-                        <p class="specialization">College Admission Expert</p>
-                        <p>Helped 500+ students secure admissions in top colleges</p>
-                        <div class="counsellor-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
+                    <div class="feature-content">
+                        <h3>Comprehensive Curriculum</h3>
+                        <p>Our curriculum aligns with school boards (CBSE, ICSE, State Boards) and competitive exams
+                            (JEE, NEET, UPSC).</p>
                     </div>
                 </div>
-                <div class="counsellor-card">
-                    <div class="counsellor-img">
-                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Arjun Khanna">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <div class="counsellor-info">
-                        <h3>Arjun Khanna</h3>
-                        <p class="specialization">Skill Development Coach</p>
-                        <p>Focuses on 21st century skills and personality development</p>
-                        <div class="counsellor-social">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
-                        </div>
+                    <div class="feature-content">
+                        <h3>Flexible Scheduling</h3>
+                        <p>Choose from morning, afternoon, or evening classes that fit your schedule, including weekend
+                            options.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Progress Tracking</h3>
+                        <p>Regular assessments and progress reports keep you informed about your child's academic
+                            development.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Affordable Pricing</h3>
+                        <p>Quality education shouldn't break the bank. We offer competitive rates with flexible payment
+                            options.</p>
                     </div>
                 </div>
             </div>
@@ -1287,58 +1205,59 @@
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>Success Stories</h2>
-                <p>What students say about our counselling services</p>
+                <h2>What Parents & Students Say</h2>
+                <p>Success stories from our satisfied students and their parents</p>
             </div>
             <div class="testimonial-cards">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"The career counselling session helped me discover my true passion for environmental science.
-                            I'm now pursuing my dream degree with confidence!"</p>
+                        <p>"The demo class convinced us immediately. The tutor's approach to teaching complex math
+                            concepts was so clear and engaging. My son's grades have improved by 30% in just 3 months!"
+                        </p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Neha Gupta">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Mrs. Sharma">
                             <div class="author-info">
-                                <h4>Neha Gupta</h4>
-                                <p>Environmental Science Student</p>
+                                <h4>Mrs. Sharma</h4>
+                                <p>Parent of Class 10 Student</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"Thanks to EduConnect's guidance, I secured admission in my dream college with a scholarship.
-                            The counsellor's advice was invaluable!"</p>
+                        <p>"I was struggling with physics, but after the demo class, I knew this was exactly what I
+                            needed. The tutor breaks down concepts in a way that makes them so easy to understand."</p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Rohan Desai">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Rahul Verma">
                             <div class="author-info">
-                                <h4>Rohan Desai</h4>
-                                <p>Engineering Student, IIT Bombay</p>
+                                <h4>Rahul Verma</h4>
+                                <p>Class 12 Science Student</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"As a parent, I was confused about my child's career options. The counsellor patiently
-                            explained all possibilities and helped us make an informed decision."</p>
+                        <p>"The English tutor's demo was fantastic! My daughter who was shy to speak English is now
+                            confident and her grades have improved significantly. Highly recommend EduConnect!"</p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Sunita Mehta">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Mrs. Patel">
                             <div class="author-info">
-                                <h4>Sunita Mehta</h4>
-                                <p>Parent</p>
+                                <h4>Mrs. Patel</h4>
+                                <p>Parent of Class 8 Student</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"The aptitude test revealed my strengths in communication, leading me to pursue mass
-                            communication. I couldn't be happier with my career choice!"</p>
+                        <p>"The chemistry tutor's demo session was eye-opening. They made organic chemistry seem so
+                            simple with their teaching methods. My NEET preparation has improved dramatically."</p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Vikram Singh">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Singh">
                             <div class="author-info">
-                                <h4>Vikram Singh</h4>
-                                <p>Journalism Student</p>
+                                <h4>Priya Singh</h4>
+                                <p>NEET Aspirant</p>
                             </div>
                         </div>
                     </div>
@@ -1348,11 +1267,12 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" id="book-now">
+    <section class="cta-section">
         <div class="container">
-            <h2>Ready to Discover Your Ideal Career Path?</h2>
-            <p>Book your free counselling session today and take the first step towards a fulfilling future.</p>
-            <a href="book-demo-class.html" class="btn" style="background-color: #f39c12;">Book Free Session Now</a>
+            <h2>Ready to Experience Quality Education?</h2>
+            <p>Book your free demo class today and see the difference our expert tutors can make in your child's
+                academic journey.</p>
+            <a href="#demo-form" class="btn" style="background-color: #f39c12;">Book Demo Class Now</a>
         </div>
     </section>
 
@@ -1510,6 +1430,24 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // Form submission
+        document.getElementById('demoClassForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Here you would typically send the form data to your server
+            // For demo purposes, we'll just show an alert
+            alert('Thank you for your demo class request! We will contact you shortly to schedule your session.');
+
+            // Reset the form
+            this.reset();
+
+            // Scroll to thank you message (in a real implementation)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     </script>
